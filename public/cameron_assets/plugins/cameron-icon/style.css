@@ -1,0 +1,129 @@
+@font-face {
+  font-family: 'cameron-icon';
+  src:  url('fonts/cameron-icona94e.eot?vskiqe');
+  src:  url('fonts/cameron-icona94e.eot?vskiqe#iefix') format('embedded-opentype'),
+    url('fonts/cameron-icona94e.ttf?vskiqe') format('truetype'),
+    url('fonts/cameron-icona94e.woff?vskiqe') format('woff'),
+    url('fonts/cameron-icona94e.svg?vskiqe#cameron-icon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="cameron-icon-"], [class*=" cameron-icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'cameron-icon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.cameron-icon-lock-person:before {
+  content: "\e915";
+}
+.cameron-icon-lock-1:before {
+  content: "\e916";
+}
+.cameron-icon-lock-2:before {
+  content: "\e917";
+}
+.cameron-icon-lock-3:before {
+  content: "\e918";
+}
+.cameron-icon-camera-1:before {
+  content: "\e919";
+}
+.cameron-icon-lock-4:before {
+  content: "\e91a";
+}
+.cameron-icon-user-2:before {
+  content: "\e91b";
+}
+.cameron-icon-star-3:before {
+  content: "\e91c";
+}
+.cameron-icon-head-phone:before {
+  content: "\e91d";
+}
+.cameron-icon-lock-5:before {
+  content: "\e91e";
+}
+.cameron-icon-smile-1:before {
+  content: "\e91f";
+}
+.cameron-icon-coffe:before {
+  content: "\e920";
+}
+.cameron-icon-Untitled-14:before {
+  content: "\e921";
+}
+.cameron-icon-smartphone:before {
+  content: "\e912";
+}
+.cameron-icon-opened-email-outlined-interface-symbol:before {
+  content: "\e913";
+}
+.cameron-icon-placeholder:before {
+  content: "\e914";
+}
+.cameron-icon-bank:before {
+  content: "\e900";
+}
+.cameron-icon-briefcase:before {
+  content: "\e901";
+}
+.cameron-icon-coffee-cup:before {
+  content: "\e902";
+}
+.cameron-icon-diploma:before {
+  content: "\e903";
+}
+.cameron-icon-email:before {
+  content: "\e904";
+}
+.cameron-icon-headphones:before {
+  content: "\e905";
+}
+.cameron-icon-key:before {
+  content: "\e906";
+}
+.cameron-icon-left-arrow:before {
+  content: "\e907";
+}
+.cameron-icon-locked:before {
+  content: "\e908";
+}
+.cameron-icon-right-arrow:before {
+  content: "\e909";
+}
+.cameron-icon-safe-box:before {
+  content: "\e90a";
+}
+.cameron-icon-shopping-bag:before {
+  content: "\e90b";
+}
+.cameron-icon-smile:before {
+  content: "\e90c";
+}
+.cameron-icon-star:before {
+  content: "\e90d";
+}
+.cameron-icon-support:before {
+  content: "\e90e";
+}
+.cameron-icon-temperature:before {
+  content: "\e90f";
+}
+.cameron-icon-traveler-with-a-suitcase:before {
+  content: "\e910";
+}
+.cameron-icon-user:before {
+  content: "\e911";
+}

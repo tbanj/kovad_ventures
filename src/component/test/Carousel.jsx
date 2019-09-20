@@ -1,0 +1,59 @@
+import React, { Component } from 'react'
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import './carousel.css';
+
+class Carousel extends Component {
+    state = {}
+
+    render() {
+        var data = this.props.data;
+        console.log(data);
+        // debugger;
+        var newsTemplate;
+        var settings = {
+            lazyload: true,
+            // autoplay: true,
+            dots: false,
+            infinite: true,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+        }
+
+        if (data.length > 0) {
+            newsTemplate = data.map(function (item, index) {
+                return (
+                    <div key={index}>
+
+                        <figure className="snip1584 "><img src={item.image} alt="display_carousel" />
+                            <figcaption className="mt-5">
+                                <div className="col-lg-12 text-center mt-5">
+                                    <h3 className="banner-title bannerTitleAdditional mt-5" >{item.title}</h3>
+                                    {/* <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod </p> */}
+                                    <div className="btn-block ">
+                                        <a href="#" className="mt-5 abutton" style={{ position: 'inherit', fontWeight: 'bold' }} >{item.quote}</a>
+                                    </div>
+                                </div>
+                            </figcaption><a id="a1" href="a1" ></a>
+                        </figure>
+                    </div>
+                )
+            })
+        } else {
+            newsTemplate = <p>Please add some cards</p>
+        }
+        return (
+            <div className="" style={{ color: 'transparent' }}>
+                <div className='news parentaldIV'>
+                    <Slider {...settings}>{newsTemplate}</Slider>
+                    <strong className={'news__count ' + (data.length > 0 ? '' : 'none')}>
+                        T
+                    </strong>
+                </div>
+            </div>
+        );
+    }
+}
+
+export default Carousel;

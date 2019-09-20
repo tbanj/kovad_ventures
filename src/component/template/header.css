@@ -1,0 +1,17 @@
+.telAddition {
+    
+    font-size: 17px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    transition: all .4s ease;
+}
+.bigScreenTel {
+    color: #161827;
+}
+
+.smallScreenTel{
+    color: #ffffff;
+}
+.colorBack {
+    color: #57b957;
+}
