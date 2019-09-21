@@ -9,19 +9,21 @@ let sectorItem = [{ id: 0, image: '/cameron_assets/images/brands/brands-1-5.png'
 { id: 8, image: '/cameron_assets/images/brands/brands-1-3.png' }];
 
 let listService = [{
-    "image": "/cameron_assets/images/services/service-1-2.jpg",
-    "title": "Electronic Security",
-    "subtitle": "Excepteur sint occaecat cupidatat non proi dent, sunt in culpa qui officia deserunt mollit anim id est."
+    "image": "/cameron_assets/images/resources/wire_fencing1.png",
+    "title": "Electric Wire Fence",
+    "subtitle": "Expel intruders from your home while you are home or not with our new arrivals of wire fencing."
 },
 {
-    "image": "/cameron_assets/images/services/service-1-1.jpg",
+    "image": "/cameron_assets/images/resources/car_locksmith.png",
     "title": "Car Locksmith",
-    "subtitle": "Excepteur sint occaecat cupidatat non proi dent, sunt in culpa qui officia deserunt mollit anim id est."
+    "subtitle": "Protect your vehicle from carjacker with our highly sensitive alarm system and real time tracking devices"
 },
 {
     "image": "/cameron_assets/images/services/service-1-3.jpg",
     "title": "Residential Locksmith",
-    "subtitle": "Excepteur sint occaecat cupidatat non proi dent, sunt in culpa qui officia deserunt mollit anim id est."
+    "subtitle": `No matter the type of key Locks on windows vent or on doors alone, 
+    it makes our home vulnerable to intruder unless its incorporated with automatic access cards
+    which is recommended for modern homes`
 },
 
 ]
@@ -75,16 +77,14 @@ let parentContent = [{
 
 
 let testimonial_data = [{
-    id: 0, title: 'Loretta Bailey', image: '/cameron_assets/images/resources/testi1-1.jpg', subtitle: 'Happy Client', content: `Lorem ipsum dolor sit amet constur adipisicing elit sed do eiusmtempor incid et dolore magna
-                                aliqu enim minim veniam quis nostrud exercittion ullamco laboris nisi ut aliquip excepteur
-                                sint
-                                occaecat cuidatat non proident sunt in culpa`},
+    id: 0, title: 'Temitope Olabanji', image: '/cameron_assets/images/resources/customer3.png', subtitle: 'Frontend Developer',
+    content: `I have received top notch service from Kovad.  All the reps have been very courteous.  The app is
+     intuitive and works exactly as promised.
+      I look forward to adding additional products and sensors to my control panel in the near future`},
 {
-    id: 1, title: 'Walter Doyle', subtitle: 'Happy Client', image: '/cameron_assets/images/resources/testi1-2.jpg',
-    content: `Lorem ipsum dolor sit amet constur adipisicing elit sed do eiusmtempor incid et dolore magna
-                                aliqu enim minim veniam quis nostrud exercittion ullamco laboris nisi ut aliquip excepteur
-                                sint
-                                occaecat cuidatat non proident sunt in culpa`}]
+    id: 1, title: 'Walter Doyle', subtitle: 'Site Engineer', image: '/cameron_assets/images/resources/testi1-2.jpg',
+    content: `>Kovad exceeds my expectations for monitoring my home. I have had the occasional "forgot to disarm" 
+    incidences. I cannot believe how prompt the monitors were calling my home to see if everything was OK.`}]
 
 
 

@@ -6,7 +6,7 @@ class TestimonialCarousel extends Component {
         var { cards } = this.props
         var settings = {
             dots: true,
-            autoplay: true,
+            // autoplay: true,
             infinite: true,
             speed: 500,
             lazyload: true,

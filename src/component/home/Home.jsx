@@ -193,14 +193,13 @@ class Home extends Component {
                                             <i className="cameron-icon-support"></i>
                                         </div>{/* /.icon-block */}
                                         <h3><a href="#navphone">Useful <br /> Support</a></h3>
-                                        {offerSupportMore ? "" : <p>Get in touch with our personnel through online chat box at the right
-                                            corner of this page or make use number Below<br />
+                                        {offerSupportMore ? "" : <p>Get in touch with our support personnels through online chat box at the left
+                                            corner of this page or make use of number Below<br />
                                             <a href="https://wa.me/2347034849938"><i style={{ fontSize: '1.8em' }} className="fa fa-whatsapp " ></i> (+234) 703 484 9938</a><br />
                                             <a href="tel:234-802-864-6144"><i style={{ fontSize: '1.8em' }} className="fa fa-phone " ></i> (+234) 802 864 6144</a>
                                         </p>
                                         }
 
-                                        <a href="#navphone" onClick={this.handleSupportMore} className="more-link">{offerSupportMore ? 'Minimize' : 'Read More'}</a>
                                     </div>{/* /.single-offer-style-one */}
                                 </div>{/* /.col-lg-3 */}
                             </div>{/* /.row */}
@@ -213,13 +212,15 @@ class Home extends Component {
                                     <div className="content-block my-auto">
                                         <div className="title-block">
                                             <span className="tag-line">Some Story</span>{/* /.tag-line */}
-                                            <h2>20 Years Of Experience</h2>
+                                            <h2>Years Of Experience</h2>
                                         </div>{/* /.title-block */}
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiu smod tempor incidunt enim ad minim veniam quis nostrud exerc tation ullamco laboris nisi ut aliquip ex ea commodo con sequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat.</p>
-                                        <ul className="list-item">
-                                            <li><i className="fa fa-circle-o"></i> Convallis ligula ligula gravida tristique.</li>
-                                            <li><i className="fa fa-circle-o"></i> Convallis ligula ligula gravida tristique.</li>
-                                        </ul>{/* /.list-item */}
+                                        <p>Kovad Ventures is a professional installation
+                                            company of security & safety device with the ideal
+                                            of offering high- end professional solutions through the use of modern
+                                            electronics safety devices for Homes, Corporate Organization, Estate, Shopping Malls, Hospitals, Hotels etc.
+                                            Also render maintenance services of security and safety devices.
+                                        </p>
+
                                         <a href="#navphone" className="more-btn">Request a Free Quote Now</a>
                                     </div>{/* /.content-block */}
                                 </div>{/* /.col-lg-6 */}
@@ -233,27 +234,30 @@ class Home extends Component {
                     </section>{/* /.about-style-one */}
                     <section className="mission-style-one wow fadeInUp" data-wow-duration="1300ms">
                         <div className="container">
-                            <div className="inner-container">
-                                <div className="single-mission-one">
+                            <div className="row inner-container">
+                                <div className="col-md-4 single-mission-one">
                                     <div className="count-block">
                                         01
                     </div>{/* /.count-block */}
                                     <h3>Our Stories</h3>
-                                    <p>Retro tattooed tousled, disrupt portland <br /> synth slow-carb brooklyn.</p>
+                                    <p>Kovad Ventures  is a professional installation<br />
+                                        company of security & safety device with the ideal<br />
+                                        of offering high- end professional solutions with routine maintenance of the equipments to perform optimumly always</p>
                                 </div>{/* /.single-mission-one */}
-                                <div className="single-mission-one">
+                                <div className="col-md-4  single-mission-one">
                                     <div className="count-block">
                                         02
                     </div>{/* /.count-block */}
                                     <h3>Our Mission</h3>
-                                    <p>Retro tattooed tousled, disrupt portland <br /> synth slow-carb brooklyn.</p>
+                                    <p>Provide high-quality, and affordable CCTV solutions and achieve complete customer satisfaction.</p>
                                 </div>{/* /.single-mission-one */}
-                                <div className="single-mission-one">
+                                <div className="col-md-4  single-mission-one">
                                     <div className="count-block">
                                         03
                     </div>{/* /.count-block */}
                                     <h3>Our Vision</h3>
-                                    <p>Retro tattooed tousled, disrupt portland <br /> synth slow-carb brooklyn.</p>
+                                    <p>To be renowned as a world class installation safety solution choice in Nigeria through our service.
+                                         Professionalism and integrity reached through innovative and cost effective security devices and equipments.</p>
                                 </div>{/* /.single-mission-one */}
                             </div>{/* /.inner-container */}
                         </div>{/* /.container */}
@@ -262,10 +266,9 @@ class Home extends Component {
                         <div className="container">
                             <div className="title-block">
                                 <span className="tag-line">Keep Runing</span>{/* /.tag-line */}
-                                <h2>Looking for Certified Trainer</h2>
+                                <h2>Looking for Certified Security Expert</h2>
                             </div>{/* /.title-block */}
-                            <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt <br /> mollit anim id est laborum.</p>
-                            <a href="contact.html" className="cta-btn">Get Appointment</a>
+                            <a href="contact.html" className="cta-btn">Request a Free Quote Now</a>
                         </div>{/* /.container */}
                     </section>{/* /.cta-style-one */}
                     <section className="service-style-one">
@@ -307,19 +310,11 @@ class Home extends Component {
                                         <i className="cameron-icon-smile"></i>
                                     </div>{/* /.icon-block */}
                                     <div className="text-block">
-                                        <h3 className="counter">746</h3>
+                                        <h3 className="counter">26</h3>
                                         <p>Happy Customers</p>
                                     </div>{/* /.text-block */}
                                 </div>{/* /.single-fun-fact-one */}
-                                <div className="single-fun-fact-one">
-                                    <div className="icon-block">
-                                        <i className="cameron-icon-coffee-cup"></i>
-                                    </div>{/* /.icon-block */}
-                                    <div className="text-block">
-                                        <h3 className="counter">3456</h3>
-                                        <p>Coffe Cups</p>
-                                    </div>{/* /.text-block */}
-                                </div>{/* /.single-fun-fact-one */}
+
                                 <div className="single-fun-fact-one">
                                     <div className="icon-block">
                                         <i className="cameron-icon-key"></i>
@@ -339,7 +334,7 @@ class Home extends Component {
                                     <div className="content-block my-auto">
                                         <div className="title-block">
                                             <span className="tag-line">Love</span>{/* /.tag-line */}
-                                            <h2>Why Love People?</h2>
+                                            <h2>Why Our Client Trust Us?</h2>
                                         </div>{/* /.title-block */}
                                         <div className="signle-featured-one">
                                             <div className="icon-block">
@@ -348,8 +343,10 @@ class Home extends Component {
                                                 </div>{/* /.inner-block */}
                                             </div>{/* /.icon-block */}
                                             <div className="text-block">
-                                                <h3>Best Professional</h3>
-                                                <p>Enim ad minim veniam nostrud exer <br /> citation ullamco.</p>
+                                                <h3>Professionalism</h3>
+                                                <p>We deliver world class service which is higher than revenue which our aim
+                                                    is to abolish the saying that only elite can have access to quality security equipments
+                                                </p>
                                             </div>{/* /.text-block */}
                                         </div>{/* /.signle-featured-one */}
                                         <div className="signle-featured-one">
@@ -360,7 +357,7 @@ class Home extends Component {
                                             </div>{/* /.icon-block */}
                                             <div className="text-block">
                                                 <h3>Always Honest</h3>
-                                                <p>Enim ad minim veniam nostrud exer <br /> citation ullamco.</p>
+                                                <p>We dont over charge.</p>
                                             </div>{/* /.text-block */}
                                         </div>{/* /.signle-featured-one */}
                                         <div className="signle-featured-one">
@@ -370,8 +367,8 @@ class Home extends Component {
                                                 </div>{/* /.inner-block */}
                                             </div>{/* /.icon-block */}
                                             <div className="text-block">
-                                                <h3>24/7 Hours Support</h3>
-                                                <p>Enim ad minim veniam nostrud exer <br /> citation ullamco.</p>
+                                                <h3>Customers Support</h3>
+                                                <p>Our customer support is available Monday to Saturday from 8am- 6pm</p>
                                             </div>{/* /.text-block */}
                                         </div>{/* /.signle-featured-one */}
                                     </div>{/* /.content-block */}
@@ -393,108 +390,7 @@ class Home extends Component {
                             <TestimonialCarousel cards={testimonial_data} />
                         </div>{/* /.container */}
                     </section>{/* /.testimonials-style-one */}
-                    <section className="working-process-one">
-                        <div className="container">
-                            <div className="title-block">
-                                <span className="tag-line">Proccess</span>{/* /.tag-line */}
-                                <h2>Working Proccess</h2>
-                            </div>{/* /.title-block */}
-                            <div className="working-process-wrap">
-                                <div className="single-working-process-one wow fadeInUp" data-wow-duration="1300ms" data-wow-delay="0ms">
-                                    <div className="count-block">
-                                        01
-                    </div>{/* /.count-block */}
-                                    <h3>You Order</h3>
-                                    <p>Retro tattooed tousled, disrupt portland <br /> synth slow-carb brooklyn.</p>
-                                </div>{/* /.single-working-process-one */}
-                                <div className="single-working-process-one wow fadeInUp" data-wow-duration="1300ms" data-wow-delay="500ms">
-                                    <div className="count-block">
-                                        02
-                    </div>{/* /.count-block */}
-                                    <h3>Installation</h3>
-                                    <p>Retro tattooed tousled, disrupt portland <br /> synth slow-carb brooklyn.</p>
-                                </div>{/* /.single-working-process-one */}
-                                <div className="single-working-process-one wow fadeInUp" data-wow-duration="1300ms" data-wow-delay="1000ms">
-                                    <div className="count-block">
-                                        03
-                    </div>{/* /.count-block */}
-                                    <h3>Enjoy Your Safety</h3>
-                                    <p>Retro tattooed tousled, disrupt portland  <br /> synth slow-carb brooklyn.</p>
-                                </div>{/* /.single-working-process-one */}
-                            </div>{/* /.working-process-wrap */}
-                        </div>{/* /.container */}
-                    </section>{/* /.working-process-one */}
-                    <section className="blog-style-one">
-                        <div className="container">
-                            <div className="title-block text-center">
-                                <span className="tag-line">News</span>{/* /.tag-line */}
-                                <h2>Latest Articles</h2>
-                            </div>{/* /.title-block */}
-                            <div className="row high-gutter">
-                                <div className="col-xl-6 col-lg-12">
-                                    <div className="single-blog-style-one">
-                                        <div className="image-block">
-                                            <img src="/cameron_assets/images/blog/blog-1-1.jpg" alt="Awesome Visaul" />
-                                            <div className="overlay-block">
-                                                <a className="more-link" href="#navphone"><i className="fa fa-arrows-alt"></i></a>
-                                            </div>{/* /.overlay-block */}
-                                        </div>{/* /.image-block */}
-                                        <div className="text-block">
-                                            <h3><a href="blog-details.html">We Need to Rent a Room For Our Party.</a></h3>
-                                            <div className="meta-info">
-                                                <a href="#navphone"><i className="fa fa-user-o"></i> Admin</a>
-                                                <a href="#navphone"><i className="fa fa-calendar-o"></i> 350</a>
-                                                <a href="#navphone"><i className="fa fa-comments-o"></i> 30</a>
-                                            </div>{/* /.meta-info */}
-                                            <a href="#navphone" className="more-btn">Read More</a>{/* /.more-btn */}
-                                        </div>{/* /.text-block */}
-                                    </div>{/* /.single-blog-style-one */}
-                                </div>{/* /.col-lg-6 */}
-                                <div className="col-xl-6 col-lg-12">
-                                    <div className="row high-gutter col1-blog-wrapper">
-                                        <div className="col-xl-12 col-lg-12">
-                                            <div className="single-blog-style-two clearfix">
-                                                <div className="image-block">
-                                                    <img src="/cameron_assets/images/blog/blog-2-1.jpg" alt="Awesome Visaul" />
-                                                    <div className="overlay-block">
-                                                        <a className="more-link" href="#navphone"><i className="fa fa-arrows-alt"></i></a>
-                                                    </div>{/* /.overlay-block */}
-                                                </div>{/* /.image-block */}
-                                                <div className="text-block">
-                                                    <h3><a href="blog-details.html">The Pink Screw ate Clumsily.</a></h3>
-                                                    <div className="meta-info">
-                                                        <a href="#navphone"><i className="fa fa-user-o"></i> Admin</a>
-                                                        <a href="#navphone"><i className="fa fa-calendar-o"></i> 350</a>
-                                                        <a href="#navphone"><i className="fa fa-comments-o"></i> 30</a>
-                                                    </div>{/* /.meta-info */}
-                                                    <a href="#navphone" className="more-btn">Read More</a>{/* /.more-btn */}
-                                                </div>{/* /.text-block */}
-                                            </div>{/* /.single-blog-style-two */}
-                                        </div>{/* /.col-xl-12 */}
-                                        <div className="col-xl-12 col-lg-12">
-                                            <div className="single-blog-style-two clearfix">
-                                                <div className="image-block">
-                                                    <img src="/cameron_assets/images/blog/blog-2-2.jpg" alt="Awesome Visaul" />
-                                                    <div className="overlay-block">
-                                                        <a className="more-link" href="#navphone"><i className="fa fa-arrows-alt"></i></a>
-                                                    </div>{/* /.overlay-block */}
-                                                </div>{/* /.image-block */}
-                                                <div className="text-block">
-                                                    <h3><a href="blog-details.html">The Indigo Dentures Whined Softly.</a></h3>
-                                                    <div className="meta-info">
-                                                        <a href="#navphone"><i className="fa fa-user-o"></i> Admin</a>
-                                                        <a href="#navphone"><i className="fa fa-calendar-o"></i> 350</a>
-                                                        <a href="#navphone"><i className="fa fa-comments-o"></i> 30</a>
-                                                    </div>{/* /.meta-info */}
-                                                    <a href="#navphone" className="more-btn">Read More</a>{/* /.more-btn */}
-                                                </div>{/* /.text-block */}
-                                            </div>{/* /.single-blog-style-two */}
-                                        </div>{/* /.col-xl-12 */}
-                                    </div>{/* /.row */}
-                                </div>{/* /.col-lg-6 */}
-                            </div>{/* /.row */}
-                        </div>{/* /.container */}
-                    </section>{/* /.blog-style-one */}
+
                     <section className="brands-area-one">
                         <div className="container">
                             <FieldCarousel fieldItem={sectorItem} />

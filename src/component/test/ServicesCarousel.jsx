@@ -39,7 +39,7 @@ class ServicesCarousel extends Component {
                                 <div className="text-block textContentService" >
                                     <h3><a href="services.html">{item.title}</a></h3>
                                     <p>{item.subtitle}.</p>
-                                    <a href="#" className="more-btn">Read More</a>
+                                    <a href="#" className="more-btn">Request a Free Quote Now</a>
                                 </div>
                             </div>
                         </div></div>
