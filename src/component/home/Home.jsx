@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import data from '../data/home';
 import Carousel from '../test/Carousel';
 import ServicesCarousel from '../test/ServicesCarousel';
-
 import TestimonialCarousel from '../test/TestimonialCarousel';
 import FieldCarousel from '../test/FieldCarousel';
 import Footer from '../template/Footer';
@@ -284,8 +283,7 @@ class Home extends Component {
                             </div> */}
                             </div>{/* /.upper-block */}
                             {/* insert carousel for servicees start */}
-                            <div className=''>
-
+                            <div className="container-fluid">
                                 <ServicesCarousel data={listService} />
                             </div>
                             {/* insert carousel for servicees end */}
@@ -368,7 +366,8 @@ class Home extends Component {
                                             </div>{/* /.icon-block */}
                                             <div className="text-block">
                                                 <h3>Customers Support</h3>
-                                                <p>Our customer support is available Monday to Saturday from 8am- 6pm</p>
+                                                <p>Our customer support is available on
+                                                    <br /> <strong>Monday to Saturday from 8am- 6pm</strong></p>
                                             </div>{/* /.text-block */}
                                         </div>{/* /.signle-featured-one */}
                                     </div>{/* /.content-block */}

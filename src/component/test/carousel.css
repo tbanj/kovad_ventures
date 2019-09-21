@@ -124,6 +124,15 @@
   .bannerTitleAdditional {
     font-weight: 20px;
   }
+  #carouselImage {
+    height: 300px;
+  }
+#addMarginText {
+  margin-bottom: 35%
+}
+  #editFont {
+    font-size: 13px;
+  }
 } 
 
 /* Large devices (laptops/desktops, 992px and up) */
@@ -167,11 +176,18 @@
   padding-left: 40px;
 }
 
+.slick-prev:before,
+.slick-next:before {
+  color: #57b957
+}
+
 /* service carousel end */
 
 
 /* testimonial carousel start */
 .imgTestimonialCarousel {
+  width:90px;
+  height: 90px;
   max-width: none;
   width: auto;
   display: block;

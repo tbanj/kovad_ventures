@@ -26,13 +26,13 @@ class Carousel extends Component {
                 return (
                     <div key={index}>
 
-                        <figure className="snip1584 "><img src={item.image} alt="display_carousel" />
+                        <figure className="snip1584 "><img id="carouselImage" src={item.image} alt="display_carousel" />
                             <figcaption className="mt-5">
-                                <div className="col-lg-12 text-center mt-5">
+                                <div id="addMarginText" className="col-lg-12 text-center mt-5">
                                     <h3 className="banner-title bannerTitleAdditional mt-5" >{item.title}</h3>
                                     {/* <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod </p> */}
                                     <div className="btn-block ">
-                                        <a href="#" className="mt-5 abutton" style={{ position: 'inherit', fontWeight: 'bold' }} >{item.quote}</a>
+                                        <a id="editFont" href="#" className="mt-5 abutton" style={{ position: 'inherit', fontWeight: 'bold' }} >{item.quote}</a>
                                     </div>
                                 </div>
                             </figcaption><a id="a1" href="a1" ></a>

@@ -8,7 +8,7 @@ import './carousel.css';
 
 
 
-class ServiceCarousel extends Component {
+class ServiceCarouselMobile extends Component {
     state = {}
 
     render() {
@@ -59,7 +59,7 @@ class ServiceCarousel extends Component {
                 return (
                     <div key={index}>
 
-                        <div className="owl-item parentServiceDiv container-fluid" ><div className="item">
+                        <div className="owl-item parentServiceDiv" ><div className="item">
                             <div className="single-service-one">
                                 <div className="image-block">
                                     <img src={item.image} alt="Awesome Visual" />
@@ -99,4 +99,4 @@ class ServiceCarousel extends Component {
     }
 }
 
-export default ServiceCarousel;
+export default ServiceCarouselMobile;
