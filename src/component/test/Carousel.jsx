@@ -9,12 +9,10 @@ class Carousel extends Component {
 
     render() {
         var data = this.props.data;
-        console.log(data);
-        // debugger;
         var newsTemplate;
         var settings = {
             lazyload: true,
-            // autoplay: true,
+            autoplay: true,
             dots: false,
             infinite: true,
             slidesToShow: 1,
@@ -32,10 +30,10 @@ class Carousel extends Component {
                                     <h3 className="banner-title bannerTitleAdditional mt-5" >{item.title}</h3>
                                     {/* <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod </p> */}
                                     <div className="btn-block ">
-                                        <a id="editFont" href="#" className="mt-5 abutton" style={{ position: 'inherit', fontWeight: 'bold' }} >{item.quote}</a>
+                                        <a id="editfont" href="editfornt"  className="mt-5 abutton" style={{ position: 'inherit', fontWeight: 'bold' }}>{item.quote}</a>
                                     </div>
                                 </div>
-                            </figcaption><a id="a1" href="a1" ></a>
+                            </figcaption><a id="a1" href="a1" dangerouslySetInnerHTML={{ __html: '' }}></a>
                         </figure>
                     </div>
                 )

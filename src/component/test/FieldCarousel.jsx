@@ -9,7 +9,7 @@ class FieldCarousel extends Component {
         const { fieldItem } = this.props;
         var settings = {
             dots: false, //d dot below wont show
-            // autoplay: true, //d images will scroll by itself if its true:: default:false
+            autoplay: true, //d images will scroll by itself if its true:: default:false
             infinite: true,
             arrows: false, //this will make the arrows disappear:: default:true
             speed: 500,

@@ -16,7 +16,7 @@ class ServiceCarousel extends Component {
         var newsTemplate;
         var settings = {
             lazyload: true,
-            // autoplay: true,
+            autoplay: true,
             dots: true,
             infinite: false,
             slidesToShow: 3,
@@ -37,18 +37,6 @@ class ServiceCarousel extends Component {
                         slidesToScroll: 1,
                     }
                 },
-                // {
-                //     breakpoint: 1000,
-                //     // settings: 'unslick',
-                //     slidesToShow: 3,
-                //     slidesToScroll: 1,
-                // },
-
-                // {
-                //     breakpoint: 992,
-                //     settings: 'unslick', // it means it should remove the carousel which will make it invisble
-
-                // }
             ]
         }
 
@@ -69,8 +57,9 @@ class ServiceCarousel extends Component {
                                 </div>
                                 <div className="text-block textContentService" >
                                     <h3><a href="services.html">{item.title}</a></h3>
-                                    <p>{item.subtitle}.</p>
-                                    <a href="#" className="more-btn">Request a Free Quote Now</a>
+                                    <p>{item.subtitle}</p>
+                                   
+                                    <a id="request" href="request" className="more-btn">Request a Free Quote Now</a>
                                 </div>
                             </div>
                         </div></div>

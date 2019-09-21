@@ -6,7 +6,7 @@ class TestimonialCarousel extends Component {
         var { cards } = this.props
         var settings = {
             dots: true,
-            // autoplay: true,
+            autoplay: true,
             infinite: true,
             speed: 500,
             lazyload: true,
@@ -24,7 +24,7 @@ class TestimonialCarousel extends Component {
                         <div key={index} className="owl-item cloned" style={{ width: '1170px', marginRight: '0px', backgroundColor: '#FFFFFF' }}><div className="item">
                             <div className="single-testimonials-one">
                                 <div className="image-block">
-                                    <img src={item.image} className="imgTestimonialCarousel" />
+                                    <img src={item.image} alt="carousel visual" className="imgTestimonialCarousel" />
                                 </div>
                                 <p>{item.content}</p>
                                 <h3>{item.title}</h3>

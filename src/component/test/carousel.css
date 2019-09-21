@@ -149,6 +149,12 @@
         transform: translateY(-100px);
         transition: all 1.5s ease;
   }
+
+  .btn-block {
+    display: block;
+    width: 100%;
+    margin-top: 20%;
+  }
 } 
 
 
