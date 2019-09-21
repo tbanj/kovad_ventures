@@ -1,18 +1,21 @@
-import React, { Component } from 'react';
+import React, { Component, lazy, Suspense } from 'react';
 // import './owl.carousel.css';
 import data from '../data/home';
-import Carousel from '../test/Carousel';
-import ServicesCarousel from '../test/ServicesCarousel';
-import TestimonialCarousel from '../test/TestimonialCarousel';
-import FieldCarousel from '../test/FieldCarousel';
-import Footer from '../template/Footer';
-import Header from '../template/Header';
+// import Carousel from '../test/Carousel';
+// import ServicesCarousel from '../test/ServicesCarousel';
+// import TestimonialCarousel from '../test/TestimonialCarousel';
+// import FieldCarousel from '../test/FieldCarousel';
+// import Footer from '../template/Footer';
+// import Header from '../template/Header';
 
 import './home.css';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-
+const ParentCarousel = lazy(() => import('../test/Carousel'));
+const ServicesCarousel = lazy(() => import('../test/ServicesCarousel'));
+const TestimonialCarousel = lazy(() => import('../test/TestimonialCarousel'));
+const FieldCarousel = lazy(() => import('../test/FieldCarousel'));
 class Home extends Component {
     state = {
         parentContent: [], testimonial_data: [], listService: [], cards: [], sectorItem: [],
@@ -53,12 +56,16 @@ class Home extends Component {
         return (
             <React.Fragment>
                 <div className="page-wrapper">
-                    <Header dataId={'header-parent-container'} />
+                    {/* <Header dataId={'header-parent-container'} /> */}
                     {/* /.main-banner-wrapper */}
                     {/* top carousel start */}
                     <div className=''>
 
-                        <Carousel data={parentContent} />
+
+                        <Suspense fallback={<div><img src="/cameron_assets/images/resources/preloader.GIF" alt="loader visual" /></div>}>
+                            <ParentCarousel data={parentContent} />
+                        </Suspense>
+
                     </div>
                     {/* top carousel end */}
                     <section className="offer-style-one">
@@ -284,7 +291,10 @@ class Home extends Component {
                             </div>{/* /.upper-block */}
                             {/* insert carousel for servicees start */}
                             <div className="container-fluid">
-                                <ServicesCarousel data={listService} />
+                                {/* <ServicesCarousel data={listService} /> */}
+                                <Suspense fallback={<div><img src="/cameron_assets/images/resources/preloader.GIF" alt="loader visual" /></div>}>
+                                    <ServicesCarousel data={listService} />
+                                </Suspense>
                             </div>
                             {/* insert carousel for servicees end */}
 
@@ -386,17 +396,23 @@ class Home extends Component {
                                 <span className="tag-line">Testimonials</span>{/* /.tag-line */}
                                 <h2>What Client Say</h2>
                             </div>{/* /.title-block */}
-                            <TestimonialCarousel cards={testimonial_data} />
+                            {/* <TestimonialCarousel cards={testimonial_data} /> */}
+                            <Suspense fallback={<div><img src="/cameron_assets/images/resources/preloader.GIF" alt="loader visual" /></div>}>
+                                <TestimonialCarousel cards={testimonial_data} />
+                            </Suspense>
                         </div>{/* /.container */}
                     </section>{/* /.testimonials-style-one */}
 
                     <section className="brands-area-one">
                         <div className="container">
-                            <FieldCarousel fieldItem={sectorItem} />
+                            {/* <FieldCarousel fieldItem={sectorItem} /> */}
+                            <Suspense fallback={<div><img src="/cameron_assets/images/resources/preloader.GIF" alt="loader visual" /></div>}>
+                                <FieldCarousel fieldItem={sectorItem} />
+                            </Suspense>
                         </div>{/* /.container */}
                     </section>{/* /.brands-area-one */}
 
-                    <Footer />
+                    {/* <Footer /> */}
                     {/* /.site-footer */}
                 </div>
             </React.Fragment>
