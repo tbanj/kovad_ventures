@@ -14,4 +14,10 @@
 }
 .colorBack {
     color: #57b957;
+    font-weight: bold;
 }
+
+.main-header .top-header .right-info i, .main-header .top-header .left-info i {
+    font-weight: bold;
+}
+

@@ -18,7 +18,7 @@ class ServicesCarousel extends Component {
             lazyload: true,
             // autoplay: true,
             dots: true,
-            infinite: true,
+            infinite: false,
             slidesToShow: 3,
             slidesToScroll: 1,
         }

@@ -118,6 +118,31 @@
 
 /* parent carousel start */
 
+ /* Extra small devices (phones, 600px and down) */
+ @media only screen and (max-width: 600px) {
+  
+  .bannerTitleAdditional {
+    font-weight: 20px;
+  }
+} 
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+
+  .bannerTitleAdditional {
+    margin: 0;
+        color: #FFFFFF;
+        font-size: 60px;
+        font-weight: 500;
+        margin-bottom: 20px;
+        opacity: 1;
+        -webkit-transform: translateY(-100px);
+        transform: translateY(-100px);
+        transition: all 1.5s ease;
+  }
+} 
+
+
 .abutton{
   position: inherit;
   display: inline-block;
@@ -130,17 +155,7 @@
   padding-left: 50px;
   padding-right: 50px;
 }
-.bannerTitleAdditional {
-  margin: 0;
-      color: #FFFFFF;
-      font-size: 60px;
-      font-weight: 500;
-      margin-bottom: 20px;
-      opacity: 1;
-      -webkit-transform: translateY(-100px);
-      transform: translateY(-100px);
-      transition: all 1.5s ease;
-}
+
 /* parent carousel end */
 
 

@@ -82,8 +82,8 @@ let testimonial_data = [{
      intuitive and works exactly as promised.
       I look forward to adding additional products and sensors to my control panel in the near future`},
 {
-    id: 1, title: 'Walter Doyle', subtitle: 'Site Engineer', image: '/cameron_assets/images/resources/testi1-2.jpg',
-    content: `>Kovad exceeds my expectations for monitoring my home. I have had the occasional "forgot to disarm" 
+    id: 1, title: 'Mrs Adepitan', subtitle: 'Entepreneur', image: '/cameron_assets/images/resources/customer4.jpg',
+    content: `Kovad exceeds my expectations for monitoring my home. I have had the occasional "forgot to disarm" 
     incidences. I cannot believe how prompt the monitors were calling my home to see if everything was OK.`}]
 
 

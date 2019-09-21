@@ -77,7 +77,7 @@ const Footer = () => {
                 </div>
                 <div className="bottom-footer text-center">
                     <div className="container">
-                        <p><a href="#cameron" id="cameron">Cameron</a> &copy; 2019 All Right Reserved</p>
+                        <p><a href="#kovad" id="kovad">Kovad</a> &copy; 2019 All Right Reserved</p>
                     </div>
                 </div>
             </footer>

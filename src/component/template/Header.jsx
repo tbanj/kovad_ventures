@@ -88,7 +88,7 @@ class Header extends Component {
                             {/* Brand and toggle get grouped for better mobile display */}
                             <div className="logo-box clearfix">
                                 <Link className="navbar-brand" style={{ backgroundColor: '#ffffff' }} to="index-2.html">
-                                    <img src="/cameron_assets/images/resources/d6.png" className="main-logo" alt="Awesome Visaul" />
+                                    <img src="/cameron_assets/images/resources/d6.png" style={{ width: '100px', height: '89px' }} className="main-logo" alt="Awesome Visaul" />
                                     <img src="/cameron_assets/images/resources/d8.png" className="stricky-logo" alt="Awesome Visaul" />
 
 

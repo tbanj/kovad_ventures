@@ -196,7 +196,7 @@ class Home extends Component {
                                         {offerSupportMore ? "" : <p>Get in touch with our support personnels through online chat box at the left
                                             corner of this page or make use of number Below<br />
                                             <a href="https://wa.me/2347034849938"><i style={{ fontSize: '1.8em' }} className="fa fa-whatsapp " ></i> (+234) 703 484 9938</a><br />
-                                            <a href="tel:234-802-864-6144"><i style={{ fontSize: '1.8em' }} className="fa fa-phone " ></i> (+234) 802 864 6144</a>
+                                            <a href="tel:234-705-069-8626"><i style={{ fontSize: '1.8em' }} className="fa fa-phone " ></i> (+234) 705 069 8626</a>
                                         </p>
                                         }
 
