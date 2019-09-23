@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Joi from 'joi-browser';
 import { toast } from 'react-toastify';
 
-
+import http from '../../service/httpService';
 import Form from '../shared/Form.jsx';
 
 import "slick-carousel/slick/slick.css";
@@ -36,9 +36,12 @@ class Contact extends Form {
             const { data } = this.state;
             console.log(data);
 
+
+
             // SENDGRID_API_KEY = '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'
             // sgMail.setApiKey(env.sendgrid_api_key);
             sgMail.setApiKey("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");
+
             const msg = {
                 to: 'engr.temitope@gmail.com',
                 from: 'info@kovadltd.com',
@@ -51,7 +54,57 @@ class Contact extends Form {
               Thank you for reaching out!
               A customer representative will get back to you soonest</p>`,
             };
-            sgMail.send(msg);
+
+            const toSend = {
+                "personalizations": [
+                    {
+                        "to": [
+                            {
+                                "email": "clement2sarah@gmail.com"
+                            }
+                        ],
+                        "subject": "Hello, World!"
+                    }
+                ],
+                "from": {
+                    "email": "info@kovadltd.com"
+                },
+                "content": [
+                    {
+                        "type": "text/text",
+                        "value": "Hello, World!"
+                    }
+                ]
+            }
+
+            // fetch(`https://api.sendgrid.com/api/mail.send.json`, {
+            //     method: 'POST', mode: 'no-cors',
+            //     headers: {
+            //         'Content-Type': 'application/json'
+            //     }, body: JSON.stringify(toSend)
+            // })
+
+            http.post(`https://api.sendgrid.com/v3/mail/send`, toSend, {
+                headers: { 'Authorization': 'Bearer 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' }
+
+            }).then((response) => {
+                // this.setState({
+                //     isLoading: false,
+                //     options
+                // });
+                console.log(response)
+                return response
+            },
+                (error) => {
+                    if (error.response && error.response.status === 422) {
+                        toast.error(error.response.data.body.message);
+
+                    }
+                    console.error("error encounter");
+                });
+
+
+            // sgMail.send(msg);
             // send message to admin
             const adminMsg = {
                 to: 'kovad.ventures@gmail.com',
@@ -63,7 +116,7 @@ class Contact extends Form {
                 html: `<p>Hi ${data.firstname},
                 ${data.message}</p>`,
             };
-            sgMail.send(adminMsg);
+            // sgMail.send(adminMsg);
             toast.success("submitted successfuly")
 
 

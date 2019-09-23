@@ -73,7 +73,7 @@ class Header extends Component {
                     <div className="top-header">
                         <div className="container">
                             <div className="left-info">
-                                <p><i className="cameron-icon-email" ></i><Link style={{ color: 'white', fontWeight: 'bold' }} to="mailto:support@example.com">info@kovad.ng</Link></p>
+                                <p><i className="cameron-icon-email" ></i><Link style={{ color: 'white', fontWeight: 'bold' }} to="mailto:info@kovadltd.com">info@kovadltd.com</Link></p>
                             </div>{/* /.left-info */}
                             <div className="right-info">
                                 <ul className="info-block">

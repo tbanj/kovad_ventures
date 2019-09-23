@@ -202,7 +202,9 @@ class Home extends Component {
                                             corner of this page or make use of number Below<br />
                                             <a href="https://wa.me/2347034849938"><i style={{ fontSize: '1.8em' }} className="fa fa-whatsapp " ></i> (+234) 703 484 9938</a><br />
                                             <a href="tel:234-705-069-8626"><i style={{ fontSize: '1.8em' }} className="fa fa-phone " ></i> (+234) 705 069 8626</a><br />
+                                            <a href="mailto:info@kovadltd.com"><i style={{ fontSize: '1.8em' }} className="fa fa-envelope " ></i> info@kovadltd.com</a>
                                             <a href="mailto:kovad.venture@gmail.com"><i style={{ fontSize: '1.8em' }} className="fa fa-envelope " ></i> kovad.venture@gmail.com</a>
+                                            
                                         </p>
                                         }
 
