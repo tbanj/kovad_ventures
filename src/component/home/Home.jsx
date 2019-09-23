@@ -15,10 +15,9 @@ import "slick-carousel/slick/slick-theme.css";
 const ParentCarousel = lazy(() => import('../test/Carousel'));
 const ServicesCarousel = lazy(() => import('../test/ServicesCarousel'));
 const TestimonialCarousel = lazy(() => import('../test/TestimonialCarousel'));
-const FieldCarousel = lazy(() => import('../test/FieldCarousel'));
 class Home extends Component {
     state = {
-        parentContent: [], testimonial_data: [], listService: [], cards: [], sectorItem: [],
+        parentContent: [], testimonial_data: [], listService: [], cards: [],
         OfferSecurityMore: false, offerBusinessMore: false, offerInformationMore: false,
         offerSupportMore: false,
     }
@@ -44,14 +43,14 @@ class Home extends Component {
         // console.log("dele: ", er.cards);
         this.setState({
             parentContent: serverData.parentContent, testimonial_data: serverData.testimonial_data,
-            listService: serverData.listService, cards: serverData.cards, sectorItem: serverData.sectorItem
+            listService: serverData.listService, cards: serverData.cards
         })
 
     }
 
 
     render() {
-        const { testimonial_data, parentContent, offerSecurityMore, sectorItem, listService,
+        const { testimonial_data, parentContent, offerSecurityMore, listService,
             offerSupportMore, offerInformationMore, offerBusinessMore } = this.state;
         return (
             <React.Fragment>
@@ -202,7 +201,8 @@ class Home extends Component {
                                         {offerSupportMore ? "" : <p>Get in touch with our support personnels through online chat box at the left
                                             corner of this page or make use of number Below<br />
                                             <a href="https://wa.me/2347034849938"><i style={{ fontSize: '1.8em' }} className="fa fa-whatsapp " ></i> (+234) 703 484 9938</a><br />
-                                            <a href="tel:234-705-069-8626"><i style={{ fontSize: '1.8em' }} className="fa fa-phone " ></i> (+234) 705 069 8626</a>
+                                            <a href="tel:234-705-069-8626"><i style={{ fontSize: '1.8em' }} className="fa fa-phone " ></i> (+234) 705 069 8626</a><br />
+                                            <a href="mailto:kovad.venture@gmail.com"><i style={{ fontSize: '1.8em' }} className="fa fa-envelope " ></i> kovad.venture@gmail.com</a>
                                         </p>
                                         }
 
@@ -283,12 +283,8 @@ class Home extends Component {
                                 <div className="title-block">
                                     <span className="tag-line">Services</span>{/* /.tag-line */}
                                     <h2>Service We Provide</h2>
-                                </div>{/* /.title-block */}
-                                {/* <div className="carousel-btn-block service-carousel-btn">
-                                <span className="carousel-btn left-btn"><i className="cameron-icon-left-arrow"></i></span>
-                                <span className="carousel-btn right-btn"><i className="cameron-icon-right-arrow"></i></span>
-                            </div> */}
-                            </div>{/* /.upper-block */}
+                                </div>
+                            </div>
                             {/* insert carousel for servicees start */}
                             <div className="container-fluid">
                                 {/* <ServicesCarousel data={listService} /> */}
@@ -299,8 +295,8 @@ class Home extends Component {
                             {/* insert carousel for servicees end */}
 
 
-                        </div>{/* /.container */}
-                    </section>{/* /.service-style-one */}
+                        </div>
+                    </section>
                     <section className="fun-fact-style-one">
                         <div className="container">
                             <div className="fun-fact-block-wrapper">
@@ -387,30 +383,23 @@ class Home extends Component {
                                         <img src="/cameron_assets/images/resources/featured-1-1.jpg" alt="Awesome Visaul" />
                                     </div>{/* /.image-block */}
                                 </div>{/* /.col-lg-6 */}
-                            </div>{/* /.row no-gutters */}
-                        </div>{/* /.container */}
-                    </section>{/* /.featured-style-one */}
+                            </div>
+                        </div>
+                    </section>
                     <section className="testimonials-style-one">
                         <div className="container">
                             <div className="title-block text-center">
-                                <span className="tag-line">Testimonials</span>{/* /.tag-line */}
+                                <span className="tag-line">Testimonials</span>
                                 <h2>What Client Say</h2>
-                            </div>{/* /.title-block */}
-                            {/* <TestimonialCarousel cards={testimonial_data} /> */}
+                            </div>
+
                             <Suspense fallback={<div><img src="/cameron_assets/images/resources/preloader.GIF" alt="loader visual" /></div>}>
                                 <TestimonialCarousel cards={testimonial_data} />
                             </Suspense>
-                        </div>{/* /.container */}
-                    </section>{/* /.testimonials-style-one */}
+                        </div>
+                    </section>
 
-                    <section className="brands-area-one">
-                        <div className="container">
-                            {/* <FieldCarousel fieldItem={sectorItem} /> */}
-                            <Suspense fallback={<div><img src="/cameron_assets/images/resources/preloader.GIF" alt="loader visual" /></div>}>
-                                <FieldCarousel fieldItem={sectorItem} />
-                            </Suspense>
-                        </div>{/* /.container */}
-                    </section>{/* /.brands-area-one */}
+
 
                     {/* <Footer /> */}
                     {/* /.site-footer */}

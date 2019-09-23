@@ -3,14 +3,13 @@ import { ToastContainer } from "react-toastify";
 
 import { Route, Switch } from "react-router-dom";
 // import { ResultContext } from './component/shared/result-context.js';
-// import Home from './component/home/Home';
 import Footer from './component/template/Footer';
 import Header from './component/template/Header';
-// import TestParent from './component/test/TestParent.jsx';
-// import SimpleSlider from './component/test/test.jsx';
+import Contact from './component/contact/Contact';
 import './App.css';
+import FieldCarousel from './component/test/FieldCarousel';
 
-// import Navbar from './component/template/Navbar.jsx';
+import 'react-toastify/dist/ReactToastify.css';
 const Home = lazy(() => import("./component/home/Home"));
 
 
@@ -40,6 +39,7 @@ class App extends Component {
           {/* <Route path="/test" component={SimpleSlider} /> */}
           {/* <Route path="/test" component={SimpleSlider} /> */}
           {/* <Route path="/" component={Home} /> */}
+          <Route path="/contact" component={Contact} />
           <Route path="/" render={() => <Suspense fallback={
             <div><img src="/cameron_assets/images/resources/preloader.GIF" alt="loader visual" /></div>}> <Home />
           </Suspense>} />
@@ -50,6 +50,9 @@ class App extends Component {
         {/* <Navbar /> */}
 
         {/* </ResultContext.Provider> */}
+        <Suspense fallback={<div><img src="/cameron_assets/images/resources/preloader.GIF" alt="loader visual" /></div>}>
+          <FieldCarousel />
+        </Suspense>
         <Footer />
       </div>
     );

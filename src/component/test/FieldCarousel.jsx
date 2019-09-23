@@ -1,12 +1,21 @@
 import React, { Component } from 'react';
 import Slider from "react-slick";
+import data from '../data/home';
 import './carousel.css';
 
 
 class FieldCarousel extends Component {
+    state = {
+        sectorItem: []
+    }
+    componentDidMount() {
+        this.setState({ sectorItem: data.sectorItem })
+    }
+
     render() {
         // let newTemplated;
-        const { fieldItem } = this.props;
+        // const { fieldItem } = this.props;
+        const { sectorItem } = this.state
         var settings = {
             dots: false, //d dot below wont show
             autoplay: true, //d images will scroll by itself if its true:: default:false
@@ -21,15 +30,17 @@ class FieldCarousel extends Component {
 
 
         return (
-            <div className="" >
-                <Slider {...settings}>
+            <div className="backgroundDiv"  >
+                <div className="container">
+                    <Slider {...settings}>
 
-                    {fieldItem.map((item, index) => (
-                        <div key={index} className="owl-item cloned" style={{ width: '234px', backgroundcolor: '#57b957', marginRight: '0px' }}><div className="item">
-                            <img src={item.image} alt="awesome visual" />
-                        </div></div>
-                    ))}
-                </Slider>
+                        {sectorItem.map((item, index) => (
+                            <div key={index} className="owl-item cloned" style={{ width: '234px', backgroundcolor: '#57b957', marginRight: '0px' }}><div className="item">
+                                <img src={item.image} alt="awesome visual" />
+                            </div></div>
+                        ))}
+                    </Slider>
+                </div>
             </div>
         );
     }
