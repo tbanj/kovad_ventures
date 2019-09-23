@@ -83,18 +83,7 @@ class Contact extends Form {
             // sgMail.setApiKey(env.sendgrid_api_key);
             // sgMail.setApiKey("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");
 
-            const msg = {
-                to: 'engr.temitope@gmail.com',
-                from: 'info@kovadltd.com',
-                subject: 'Your Inquiry ',
 
-                text: `Hi ${data.firstname},
-            Thank you for contacting us!
-            Have a pleasant day.`,
-                html: `<p>Hi ${data.firstname},
-              Thank you for reaching out!
-              A customer representative will get back to you soonest</p>`,
-            };
 
 
 
