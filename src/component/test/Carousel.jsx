@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import Slider from "react-slick";
-import {Link } from 'react-router-dom';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import './carousel.css';
@@ -12,12 +11,9 @@ class Carousel extends Component {
         var data = this.props.data;
         var newsTemplate;
         var settings = {
-            lazyload: true,
-            autoplay: true,
-            dots: false,
-            infinite: true,
-            slidesToShow: 1,
-            slidesToScroll: 1,
+            lazyload: true, autoplay: true,
+            dots: false, infinite: true,
+            slidesToShow: 1, slidesToScroll: 1,
         }
 
         if (data.length > 0) {
@@ -31,10 +27,10 @@ class Carousel extends Component {
                                     <h3 className="banner-title bannerTitleAdditional mt-5" >{item.title}</h3>
                                     {/* <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod </p> */}
                                     <div className="btn-block ">
-                                        <a id="editfont" href="editfornt"  className="mt-5 abutton" style={{ position: 'inherit', fontWeight: 'bold' }}>{item.quote}</a>
+                                        <a id="editfont" href="editfornt" className="mt-5 abutton" style={{ position: 'inherit', fontWeight: 'bold' }}>{item.quote}</a>
                                     </div>
                                 </div>
-                            </figcaption><Link id="a1" to={"/"} dangerouslySetInnerHTML={{ __html: '' }}></Link>
+                            </figcaption><a id="a1" href="#requestButton" dangerouslySetInnerHTML={{ __html: '' }}></a>
                         </figure>
                     </div>
                 )

@@ -1,4 +1,18 @@
-import React from 'react'
+import React from 'react';
+// addVisitorContact(data) {
+//     console.log(data)
+//     addVisitor(data).then(data => {
+//         if (data) {
+//             this.setState({ modalClose: 'modal' })
+//         }
+//     }, (error) => {
+//         if (error.response && error.response.status === 422) {
+//             this.setState({ errorData: 'no data found currently, try again later', serverData: [], isFetching: false });
+//             // console.log(error.response.data.errors[0])
+//             toast.error("Unable to send message");
+//         }
+//     });
+// }
 const Footer = () => {
     return (
         <React.Fragment>
@@ -65,11 +79,27 @@ const Footer = () => {
                                     <div className="footer-widget-title">
                                         <h3>Subscribe to our NewsLetter</h3>
                                     </div>
-                                    <form action="#" className="newsletter-form">
+                                    {/* <form action="#" className="newsletter-form">
                                         <p>* We promise not to send spam messages..</p>
                                         <input type="text" placeholder="Enter your email" />
                                         <button type="submit">Subscribe</button>
-                                    </form>{/* /.newsletter-form */}
+                                    </form> */}
+                                    {/* /.newsletter-form */}
+
+                                    <form className="newsletter-form" ngnoform="true" method="POST" action="https://amazonaws.us19.list-manage.com/subscribe/post?u=45d50ff4add87037400543534&amp;id=b1b70fcb53">
+                                        {/* <div class=" input-group" style=" margin-top: 3%">
+                                            
+                                            <input type="email" class="form-control footerInput" placeholder="Input email" name="EMAIL"
+                                            aria-label="Email" aria-describedby="basic-addon1" 
+                                            ngModel #email ="ngModel" required>
+                                            <!-- <i class="fa fa-paper-plane"></i> -->
+                                            <button style="background-color: #ee419e;color: #fff; cursor: pointer;" class="fa fa-paper-plane input-group-append" type="submit"></button>  
+                                    
+                                        </div> */}
+                                        <p>* We promise not to send spam messages..</p>
+                                        <input type="text" placeholder="Enter your email" name="EMAIL" />
+                                        <button type="submit">Subscribe</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>{/* /.row */}

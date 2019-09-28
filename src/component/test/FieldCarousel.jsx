@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Slider from "react-slick";
-import data from '../data/home';
+import data from '../../data/home';
 import './carousel.css';
 
 

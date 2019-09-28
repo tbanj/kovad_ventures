@@ -1,3 +1,13 @@
 #geo-wrapper {
     width: 100% !important;
 }
+
+.infoContact{
+    font-size: 16px;
+    line-height: 26px;
+    color: #9FA2A6;
+}
+
+.single-contact-info-one{
+    font-size: 1.8em 
+}

@@ -127,8 +127,8 @@
             margin: 0,
             nav: false,
             navText: [
-                '<i class="cameron-icon-left-arrow"></i>',
-                '<i class="cameron-icon-right-arrow"></i>'
+                '<i className="cameron-icon-left-arrow"></i>',
+                '<i className="cameron-icon-right-arrow"></i>'
             ],
             dots: false,
             autoWidth: false,
@@ -172,8 +172,8 @@
             margin: 30,
             nav: false,
             navText: [
-                '<i class="cameron-icon-left-arrow"></i>',
-                '<i class="cameron-icon-right-arrow"></i>'
+                '<i className="cameron-icon-left-arrow"></i>',
+                '<i className="cameron-icon-right-arrow"></i>'
             ],
             dots: false,
             autoWidth: false,
@@ -217,8 +217,8 @@
             margin: 30,
             nav: false,
             navText: [
-                '<i class="cameron-icon-left-arrow"></i>',
-                '<i class="cameron-icon-right-arrow"></i>'
+                '<i className="cameron-icon-left-arrow"></i>',
+                '<i className="cameron-icon-right-arrow"></i>'
             ],
             stagePadding: 25,
             dots: false,
@@ -264,8 +264,8 @@
             margin: 0,
             nav: true,
             navText: [
-                '<i class="cameron-icon-left-arrow"></i>',
-                '<i class="cameron-icon-right-arrow"></i>'
+                '<i className="cameron-icon-left-arrow"></i>',
+                '<i className="cameron-icon-right-arrow"></i>'
             ],
             dots: true,
             autoWidth: false,
@@ -302,8 +302,8 @@
             margin: 0,
             nav: false,
             navText: [
-                '<i class="fa fa-long-arrow-left"></i>',
-                '<i class="fa fa-long-arrow-right"></i>'
+                '<i className="fa fa-long-arrow-left"></i>',
+                '<i className="fa fa-long-arrow-right"></i>'
             ],
             dots: false,
             autoWidth: false,
@@ -350,7 +350,7 @@
     if ($('.main-navigation .navigation-box .sub-menu').length) {
         var subMenu = $('.main-navigation .sub-menu');
         subMenu.parent('li').children('a').append(function() {
-            return '<button class="sub-nav-toggler"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>';
+            return '<button className="sub-nav-toggler"> <span className="sr-only">Toggle navigation</span> <span className="icon-bar"></span> <span className="icon-bar"></span> <span className="icon-bar"></span> </button>';
         });
         var mainNavToggler = $('.header-navigation .menu-toggler');
         var subNavToggler = $('.main-navigation .sub-nav-toggler');
@@ -456,7 +456,7 @@
                 console.log(filterElement);
                 var count = $('.gallery-content').find(filterElement).length;
 
-                $(this).children('span').append('<span class="count"><b>' + count + '</b></span>');
+                $(this).children('span').append('<span className="count"><b>' + count + '</b></span>');
             });
         };
     }

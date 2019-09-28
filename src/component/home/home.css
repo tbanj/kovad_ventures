@@ -7,6 +7,15 @@
     font-size: 20%
 }
 
+.addHeight {
+    height: 150px !important;
+    padding-top: 10px;
+}
+
+.boldContact{
+    font-weight: bold;
+}
+
 
 
 	

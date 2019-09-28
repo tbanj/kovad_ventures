@@ -1,41 +1,53 @@
-import React, { Component, lazy, Suspense } from 'react';
-// import './owl.carousel.css';
-import data from '../data/home';
-// import Carousel from '../test/Carousel';
-// import ServicesCarousel from '../test/ServicesCarousel';
-// import TestimonialCarousel from '../test/TestimonialCarousel';
-// import FieldCarousel from '../test/FieldCarousel';
-// import Footer from '../template/Footer';
-// import Header from '../template/Header';
+import React, { lazy, Suspense } from 'react';
+import Joi from 'joi-browser';
+import { toast } from 'react-toastify';
+import data from '../../data/home.js';
+import { sendQuote, addVisitor } from "../../service/dataService.js";
+import Form from "../shared/Form.jsx";
 
-import './home.css';
+
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
+import './home.css';
 const ParentCarousel = lazy(() => import('../test/Carousel'));
 const ServicesCarousel = lazy(() => import('../test/ServicesCarousel'));
 const TestimonialCarousel = lazy(() => import('../test/TestimonialCarousel'));
-class Home extends Component {
-    state = {
-        parentContent: [], testimonial_data: [], listService: [], cards: [],
-        OfferSecurityMore: false, offerBusinessMore: false, offerInformationMore: false,
-        offerSupportMore: false,
+class Home extends Form {
+    constructor(props) {
+        super(props)
+        this.state = {
+            data: { firstname: '', lastname: "", email: '', message: '', phoneNumber: '' },
+            errors: {},
+            parentContent: [], testimonial_data: [], listService: [], cards: [],
+            OfferSecurityMore: false, offerBusinessMore: false, offerInformationMore: false,
+            offerSupportMore: false, modalClose: '',
+
+        };
     }
+
+    schema = {
+        email: Joi.string().email().required().label("Email"),
+        firstname: Joi.string().required().min(3).max(20).label("First Name"),
+        lastname: Joi.string().required().min(3).max(20),
+        message: Joi.string().min(10).required(),
+        phoneNumber: Joi.number().min(1000000000).max(99999999999999).required().label("Phone"),
+    };
 
     handleSecurityMore = () => {
         this.setState(prevState => { return { offerSecurityMore: !prevState.offerSecurityMore } })
     }
 
     handleBusinessMore = () => {
-        this.setState(prevState => { return { offerBusinessMore: !prevState.offerBusinessMore } })
+        this.setState(prevState => { return { offerBusinessMore: !prevState.offerBusinessMore } });
     }
 
     handleInformationMore = () => {
-        this.setState(prevState => { return { offerInformationMore: !prevState.offerInformationMore } })
+        this.setState(prevState => { return { offerInformationMore: !prevState.offerInformationMore } });
     }
 
     handleSupportMore = () => {
-        this.setState(prevState => { return { offerSupportMore: !prevState.offerSupportMore } })
+        this.setState(prevState => { return { offerSupportMore: !prevState.offerSupportMore } });
     }
 
     componentDidMount() {
@@ -44,19 +56,76 @@ class Home extends Component {
         this.setState({
             parentContent: serverData.parentContent, testimonial_data: serverData.testimonial_data,
             listService: serverData.listService, cards: serverData.cards
-        })
+        });
 
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+
+    }
+
+    handleRequest = () => {
+        this.setState({ modalClose: '', data: { firstname: '', lastname: "", email: '', message: '', phoneNumber: '' } });
+    }
+
+    addVisitorContact(data) {
+        addVisitor(data).then(data => {
+            if (data) {
+                this.setState({ modalClose: 'modal' })
+            }
+        }, (error) => {
+            if (error.response && error.response.status === 422) {
+                this.setState({ errorData: 'no data found currently, try again later', serverData: [], isFetching: false });
+                // console.log(error.response.data.errors[0])
+                toast.error("Unable to send message");
+            }
+        });
+    }
+
+    quoteToServer(data) {
+        let reviewData = data;
+        sendQuote(data).then(data => {
+            if (data) {
+                toast.success(data.data.message);
+                delete reviewData.message;
+                this.addVisitorContact(reviewData);
+            }
+        }, (error) => {
+            if (error.response && error.response.status === 422) {
+                this.setState({ errorData: 'no data found currently, try again later', serverData: [], isFetching: false });
+                toast.error(error.response.data.errors[0]);
+            }
+        })
+    }
+
+    doSubmit = () => {
+        try {
+            const { data } = this.state;
+            let toSend = {
+                "email": data.email.trim(), "first_name": data.firstname,
+                "last_name": data.lastname, "message": data.message,
+                "phone_number": data.phoneNumber.toString()
+            }
+
+
+            this.quoteToServer(toSend);
+            // delete toSend.message;
+            // delete toSend.phone_number;
+            // delete toSend.message;
+
+        }
+        catch (error) {
+            console.log(error);
+        }
     }
 
 
     render() {
         const { testimonial_data, parentContent, offerSecurityMore, listService,
-            offerSupportMore, offerInformationMore, offerBusinessMore } = this.state;
+            offerSupportMore, offerInformationMore, offerBusinessMore, modalClose } = this.state;
         return (
             <React.Fragment>
                 <div className="page-wrapper">
-                    {/* <Header dataId={'header-parent-container'} /> */}
-                    {/* /.main-banner-wrapper */}
                     {/* top carousel start */}
                     <div className=''>
 
@@ -200,11 +269,11 @@ class Home extends Component {
                                         <h3><a href="#navphone">Useful <br /> Support</a></h3>
                                         {offerSupportMore ? "" : <p>Get in touch with our support personnels through online chat box at the left
                                             corner of this page or make use of number Below<br />
-                                            <a href="https://wa.me/2347034849938"><i style={{ fontSize: '1.8em' }} className="fa fa-whatsapp " ></i> (+234) 703 484 9938</a><br />
-                                            <a href="tel:234-705-069-8626"><i style={{ fontSize: '1.8em' }} className="fa fa-phone " ></i> (+234) 705 069 8626</a><br />
-                                            <a href="mailto:info@kovadltd.com"><i style={{ fontSize: '1.8em' }} className="fa fa-envelope " ></i> info@kovadltd.com</a>
-                                            <a href="mailto:kovad.venture@gmail.com"><i style={{ fontSize: '1.8em' }} className="fa fa-envelope " ></i> kovad.venture@gmail.com</a>
-                                            
+                                            <a className="boldContact" href="https://wa.me/2347034849938"><i style={{ fontSize: '1.8em' }} className="fa fa-whatsapp " ></i> (+234) 703 484 9938</a><br />
+                                            <a className="boldContact" href="tel:234-705-069-8626"><i style={{ fontSize: '1.8em' }} className="fa fa-phone " ></i> (+234) 705 069 8626</a><br />
+                                            <a className="boldContact" href="mailto:info@kovadltd.com"><i style={{ fontSize: '1.8em' }} className="fa fa-envelope " ></i> info@kovadltd.com</a><br />
+                                            <a className="boldContact" href="mailto:kovad.venture@gmail.com"><i style={{ fontSize: '1.8em' }} className="fa fa-envelope " ></i> kovad.venture@gmail.com</a>
+
                                         </p>
                                         }
 
@@ -217,7 +286,7 @@ class Home extends Component {
                         <div className="container">
                             <div className="row">
                                 <div className="col-lg-6 d-flex">
-                                    <div className="content-block my-auto">
+                                    <div id="requestButton" className="content-block my-auto">
                                         <div className="title-block">
                                             <span className="tag-line">Some Story</span>{/* /.tag-line */}
                                             <h2>Years Of Experience</h2>
@@ -229,7 +298,43 @@ class Home extends Component {
                                             Also render maintenance services of security and safety devices.
                                         </p>
 
-                                        <a href="#navphone" className="more-btn">Request a Free Quote Now</a>
+                                        <a href="#navphone" onClick={this.handleRequest} data-toggle="modal" data-target="#requestModal" className="more-btn">Request a Free Quote Now</a>
+
+
+                                        {/* modal request start */}
+                                        <div className="modal fade" id="requestModal" tabIndex="-1" role="dialog" aria-labelledby="requestModalTitle" aria-hidden="true">
+                                            <div className="modal-dialog" role="document">
+                                                <div className="modal-content">
+                                                    <div className="modal-header">
+                                                        <h5 className="modal-title col-md-6 offset-md-3" id="exampleModalLongTitle">Request a Quote
+                                                    </h5>
+                                                    </div>
+                                                    <div className="modal-body">
+                                                        <form onSubmit={this.handleSubmit} className="contact-form-one ">
+                                                            <div className="row">
+                                                                <div className="col-md-6">
+                                                                    {this.renderInput('firstname', 'Fist Name', 'text', true)}
+                                                                </div>
+                                                                <div className="col-md-6">
+                                                                    {this.renderInput('lastname', 'Last Name', 'text')}
+                                                                </div>
+                                                            </div>
+                                                            {this.renderInput('email', 'Contact Email', 'email')}
+                                                            {this.renderInput('phoneNumber', 'Phone Number', 'number')}
+                                                            {this.renderTextarea('message', 'Brief explain of what you want', ' Kindly pour out your thoughts', 6, "w-100 addHeight", "")}
+                                                            {this.renderButton('Submit Now', `btn btn-block btn-lg btn-primary col-md-6 offset-md-3 my-3`, "submit", { borderRadius: '60px' }, modalClose)}
+
+                                                        </form>
+                                                    </div>
+                                                    <div className="modal-footer">
+                                                        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        {/* modal request end */}
+
                                     </div>{/* /.content-block */}
                                 </div>{/* /.col-lg-6 */}
                                 <div className="col-lg-6">
@@ -276,7 +381,41 @@ class Home extends Component {
                                 <span className="tag-line">Keep Runing</span>{/* /.tag-line */}
                                 <h2>Looking for Certified Security Expert</h2>
                             </div>{/* /.title-block */}
-                            <a href="contact.html" className="cta-btn">Request a Free Quote Now</a>
+
+                            <a href="#navphone" onClick={this.handleRequest} data-toggle="modal" data-target="#requestModa" className="cta-btn">Request a Free Quote Now</a>
+
+
+                            {/* modal request start */}
+                            <div className="modal fade" id="requestModa" tabIndex="-1" role="dialog" aria-labelledby="requestModalTitle" aria-hidden="true">
+                                <div className="modal-dialog" role="document">
+                                    <div className="modal-content">
+                                        <div className="modal-header">
+                                            <h5 className="modal-title col-md-6 offset-md-3" id="exampleModalLongTitle">Request a Quote
+                                                    </h5>
+                                        </div>
+                                        <div className="modal-body">
+                                            <form onSubmit={this.handleSubmit} className="contact-form-one ">
+                                                <div className="row">
+                                                    <div className="col-md-6">
+                                                        {this.renderInput('firstname', 'Fist Name', 'text', true)}
+                                                    </div>
+                                                    <div className="col-md-6">
+                                                        {this.renderInput('lastname', 'Last Name', 'text')}
+                                                    </div>
+                                                </div>
+                                                {this.renderInput('email', 'Contact Email', 'email')}
+                                                {this.renderInput('phoneNumber', 'Phone Number', 'number')}
+                                                {this.renderTextarea('message', 'Brief explain of what you want', ' Kindly pour out your thoughts', 6, "w-100 addHeight", "")}
+                                                {this.renderButton('Submit Now', `btn btn-block btn-lg btn-primary col-md-6 offset-md-3 my-3`, "submit", { borderRadius: '60px' }, modalClose)}
+
+                                            </form>
+                                        </div>
+                                        <div className="modal-footer">
+                                            <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>{/* /.container */}
                     </section>{/* /.cta-style-one */}
                     <section className="service-style-one">

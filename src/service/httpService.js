@@ -23,7 +23,6 @@ axios.interceptors.response.use(null, error => {
 
 function setJwt(jwt) {
     // this is use to set default headers to CRUD command to this project api request
-    axios.defaults.headers.common['Authorization'] = `Bearer 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`
 
     // this is use to set default headers to post command only to this project api request
     // axios.defaults.headers.post

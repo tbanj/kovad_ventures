@@ -2,11 +2,6 @@ import React, { Component } from 'react';
 import { NavLink, Link } from "react-router-dom";
 
 import './header.css';
-
-
-
-
-
 class Header extends Component {
     constructor() {
         super()
@@ -28,7 +23,6 @@ class Header extends Component {
             return { showMobileNav: !prevState.showMobileNav, showNavMobile: 'showen', mobileStyle: 'block' }
         })
     }
-
 
     handleShopMobileStyle() {
         this.setState(prevState => {
@@ -54,16 +48,9 @@ class Header extends Component {
             return { shopProductNav: !prevState.shopProductNav, shopProductMobileStyle: 'block' }
         })
     }
-    componentDidUpdate(prevProps, prevState) {
-
-
-    }
-
-
 
     render() {
-        const { showMobileNav, mobileStyle, shopProductMobileStyle,
-            showNavMobile, ShopMobileStyle, ShopMobileNav, serviceMobileStyle } = this.state;
+        const { mobileStyle, showNavMobile } = this.state;
         const { dataId } = this.props;
 
 
@@ -78,7 +65,7 @@ class Header extends Component {
                             <div className="right-info">
                                 <ul className="info-block">
                                     <li><i className="cameron-icon-support"></i><a href="https://wa.me/2347034849938">(+234) 703 484 9938</a></li>
-                                    <li><Link to="cart.html" className="cart-btn"><i className="cameron-icon-shopping-bag"></i><span className="count-text">(0)</span></Link></li>
+                                    {/* <li><Link to="cart.html" className="cart-btn"><i className="cameron-icon-shopping-bag"></i><span className="count-text">(0)</span></Link></li> */}
                                 </ul>
                             </div>{/* /.right-info */}
                         </div>{/* /.container */}
@@ -104,69 +91,9 @@ class Header extends Component {
                             <div className={`main-navigation ${showNavMobile}`} style={{ display: `${mobileStyle}` }}>
                                 <ul className=" navigation-box">
 
-                                    <li className="current">
-                                        <NavLink to="/">Home</NavLink>
-
-                                    </li>
-                                    <li>
-                                        <NavLink to="about.html">About</NavLink>
-                                    </li>
-                                    <li>
-                                        <NavLink to={showMobileNav ? '#' : '/services'} >Services
-                                        {showNavMobile ? <button onClick={this.handleServiceMobileStyle} class="sub-nav-toggler"> <span class="sr-only">Toggle navigation</span>
-                                                <span class="icon-bar"></span> <span class="icon-bar"></span>
-                                                <span class="icon-bar"></span> </button> : ''}
-                                        </NavLink>
-                                        <ul className="sub-menu" style={{ display: `${serviceMobileStyle}` }}>
-                                            <li><Link to="private.html">Private Security</Link></li>
-                                            <li><Link to="transport.html">Transport Security</Link></li>
-                                            <li><Link to="home.html">Home Security</Link></li>
-                                            <li className="active"><Link to="busniess.html">Business Security</Link></li>
-                                            <li><Link to="protocol.html">Protocol Duties</Link></li>
-                                            <li><Link to="armed.html">Armed Security</Link></li>
-                                        </ul>{/* /.sub-menu */}
-                                    </li>
-                                    <li>
-                                        <NavLink to="#navphone">Pages</NavLink>
-                                        <ul className="sub-menu">
-                                            <li><Link to="team.html">Team</Link></li>
-                                            <li><Link to="testimonials.html">Testimonials</Link></li>
-                                            <li><Link to="pricing.html">Pricing</Link></li>
-                                            <li><Link to="gallery.html">Gallery</Link></li>
-                                        </ul>{/* /.sub-menu */}
-                                    </li>
-                                    <li >
-                                        <Link to={showMobileNav ? '#' : 'index-2.html'}>Shop
-                                        {showNavMobile ? <button onClick={this.handleShopMobileStyle} class="sub-nav-toggler"> <span class="sr-only">Toggle navigation</span>
-                                                <span class="icon-bar"></span> <span class="icon-bar"></span>
-                                                <span class="icon-bar"></span> </button> : ''}
-                                        </Link>
-                                        <ul className="sub-menu" style={{ display: `${ShopMobileStyle}` }}>
-                                            <li><Link to="shop.html">Shop Page</Link></li>
-                                            <li><Link to="#navphone">Product Page
-                                        {ShopMobileNav ? <button onClick={this.handleShopProductMobileStyle} class="sub-nav-toggler"> <span class="sr-only">Toggle navigation</span>
-                                                    <span class="icon-bar"></span> <span class="icon-bar"></span>
-                                                    <span class="icon-bar"></span> </button> : ''}
-                                            </Link>
-                                                <ul className="sub-menu" style={{ display: `${shopProductMobileStyle}` }}>
-                                                    <li><Link to="index-2.html">Header One</Link></li>
-                                                    <li><Link to="index2.html">Header Two</Link></li>
-                                                    <li><Link to="index3.html">Header Three</Link></li>
-                                                </ul>{/* /.sub-menu */}
-                                            </li>
-                                            <li><Link to="cart.html">Cart Page</Link></li>
-                                            <li><Link to="checkout.html">Checkout Page</Link></li>
-                                            <li>
-                                                <NavLink to="about.html">About</NavLink>
-                                            </li>
-                                        </ul>{/* /.sub-menu */}
-                                    </li>
-
-
-                                    <li>
-                                        <NavLink to="blog.html">Blog</NavLink>
-
-                                    </li>
+                                    <li className="current"> <NavLink to="/">Home</NavLink></li>
+                                    <li> <NavLink to={"contact"}>Contact</NavLink></li>
+                                    <li> <NavLink to={"about_us"}>About</NavLink> </li>
                                     <li><div className="sticky-tel">
                                         <a href={"https://wa.me/2347034849938"}>
                                             <i className="cameron-icon-support colorBack"></i>(+234) 703 484 9938</a>

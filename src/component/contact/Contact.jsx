@@ -3,14 +3,12 @@ import { Link } from "react-router-dom";
 import Joi from 'joi-browser';
 import { toast } from 'react-toastify';
 
-import http from '../../service/httpService';
+import { sendMessage, addVisitorData } from "../../service/dataService.js";
 import Form from '../shared/Form.jsx';
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
-var cors = require('cors')
-const sgMail = require('@sendgrid/mail');
+import './contact.css';
 class Contact extends Form {
     constructor(props) {
         super(props)
@@ -30,125 +28,45 @@ class Contact extends Form {
         message: Joi.string().min(10).required(),
     };
 
+    addVisitorContact(data) {
+        addVisitorData(data).then(data => {
+            if (data) {
+                this.setState({ data: { firstname: '', lastname: "", email: '', message: '' } });
+                toast.success("message sent successfully");
+            }
+        }, (error) => {
+            if (error.response && error.response.status === 422) {
+                this.setState({ errorData: 'no data found currently, try again later', serverData: [], isFetching: false });
+                toast.error("Unable to send message");
+            }
+        });
+    }
+
     doSubmit = async () => {
-
-        const toSend = {
-            "personalizations": [
-                {
-                    "to": [
-                        {
-                            "email": "clement2sarah@gmail.com"
-                        }
-                    ],
-                    "subject": "Hello, World!"
-                }
-            ],
-            "from": {
-                "email": "info@kovadltd.com"
-            },
-            "content": [
-                {
-                    "type": "text/text",
-                    "value": "Hello, World!"
-                }
-            ]
-        }
-
-
-
-
-
-
         try {
             const { data } = this.state;
-            console.log(data);
-
-            sgMail.setApiKey("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");
-            const msg = {
-                to: 'engr.temitope@gmail.com',
-                from: 'info@majasave.com',
-                subject: 'Verify your majasave account',
-                text: `Hi ${'Adeleke'},
-      You need to set new password before you can login!
-      Click the link below to create a new password
-      to proceed.`,
-                html: `<p>Hi ${'Adeleke'},
-        TYou need to set new password before you can login!<br>
-        Click the link below to create a new password:<br>.</p>`,
-            };
-            sgMail.send(msg);
-
-
-            // SENDGRID_API_KEY = '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'
-            // sgMail.setApiKey(env.sendgrid_api_key);
-            // sgMail.setApiKey("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");
+            const toSend = {
+                "email": data.email.trim(), "first_name": data.firstname,
+                "last_name": data.lastname, "message": data.message
+            }
+            let dataSend = toSend;
+            sendMessage(toSend).then(data => {
+                if (data) {
+                    delete dataSend.message;
+                    this.addVisitorContact(dataSend);
+                }
+            }, (error) => {
+                if (error.response && error.response.status === 422) {
+                    this.setState({ errorData: 'no data found currently, try again later', serverData: [], isFetching: false });
+                    toast.error("Unable to send message");
+                }
+            });
+            // delete toSend.message;
 
 
-
-
-
-
-
-            // http.post(`https://api.sendgrid.com/v3/mail/send`, toSend)
-            //     .then((response) => {
-            //         // this.setState({
-            //         //     isLoading: false,
-            //         //     options
-            //         // });
-            //         console.log(response)
-            //         return response
-            //     },
-            //         (error) => {
-            //             if (error.response && error.response.status === 422) {
-            //                 toast.error(error.response.data.body.message);
-
-            //             }
-            //             console.error("error encounter");
-            //         });
-
-
-
-
-            // sgMail.send(msg);
-            // send message to admin
-            // const adminMsg = {
-            //     to: 'kovad.ventures@gmail.com',
-            //     from: data.email,
-            //     subject: `You have a new inquiry from ${data.firstname} ${data.lastname} `,
-
-            //     text: `Hi Admin,
-            //         Below is the message sent to you by prospecting client`,
-            //     html: `<p>Hi ${data.firstname},
-            //     ${data.message}</p>`,
-            // };
-            // // sgMail.send(adminMsg);
-            // toast.success("submitted successfuly")
-
-
-            // await login(data.username, data.password);
-
-            // toast.success(`Welcome `);
-
-            // below code will reload the application & direct user to url below
-            // const { state } = this.props.location;
-            // window.location = state ? state.from.pathname : '/dashboard/movies';
-
-            // below will login the user & prevent the user from coming back to this url
-            // if the request is successful
-            // this.props.history.replace('/movies');
-            // console.log(` Login form SUBMITTED`);
         }
         catch (error) {
             console.log(error);
-
-            // this._isMounted = true;
-            // if (error.response && error.response.status === 400) {
-            //     const errors = { ...this.state.errors };
-            //     errors.username = error.response.data;
-            //     toast.error(error.response.data);
-            //     this._isMounted && this.setState({ errors })
-
-            // }
         }
     }
 
@@ -177,7 +95,7 @@ class Contact extends Form {
                                     <div className="inner-block">
                                         <i className="cameron-icon-placeholder"></i>
                                         <h3>Our Location</h3>
-                                        <p>PO Box 16122 Collins Street <br /> West Victoria 8007 Canada</p>
+                                        <p>142 Lawanson Road, Otun-Oba, Itire, Lagos</p>
                                     </div>{/* /.inner-block */}
                                 </div>{/* /.single-contact-info-one */}
                             </div>{/* /.col-lg-4 */}
@@ -186,7 +104,8 @@ class Contact extends Form {
                                     <div className="inner-block">
                                         <i className="cameron-icon-smartphone"></i>
                                         <h3>Call Us Now</h3>
-                                        <p>(+48) 564-334-21-22-34 <br /> (+48) 564-334-21-25</p>
+                                        <a className="infoContact" href="https://wa.me/2347034849938"><i style={{ fontSize: '1.8em' }} className="fa fa-whatsapp " ></i> (+234) 703 484 9938</a><br />
+                                        <a className="infoContact" href="tel:234-705-069-8626"><i style={{ fontSize: '1.8em' }} className="fa fa-phone " ></i> (+234) 705 069 8626</a><br />
                                     </div>{/* /.inner-block */}
                                 </div>{/* /.single-contact-info-one */}
                             </div>{/* /.col-lg-4 */}
@@ -195,7 +114,9 @@ class Contact extends Form {
                                     <div className="inner-block">
                                         <i className="cameron-icon-opened-email-outlined-interface-symbol"></i>
                                         <h3>Write Us Now</h3>
-                                        <p>info@Cameron.com <br /> info@example.com</p>
+
+                                        <a className="infoContact" href="mailto: info@kovadltd.com"><i style={{ fontSize: '1.8em' }} className="fa fa-envelope " ></i> info@kovadltd.com</a><br />
+                                        <a className="infoContact" href="mailto: kovad.venture@gmail.com"><i style={{ fontSize: '1.8em' }} className="fa fa-envelope " ></i> kovad.venture@gmail.com</a><br />
                                     </div>{/* /.inner-block */}
                                 </div>{/* /.single-contact-info-one */}
                             </div>{/* /.col-lg-4 */}
@@ -229,7 +150,7 @@ class Contact extends Form {
                                             {this.renderTextarea('message', 'Your Inquiry', 'Kindly pour out your thoughts', 6)}
 
 
-                                            {this.renderButton('Submit Now', `contact-form-one, btn btn-block btn-lg btn-primary btn-rounded my-3`, "submit", { borderRadius: '60px' })}
+                                            {this.renderButton('Submit Now', `contact-form-one, btn btn-block btn-lg btn-primary btn-rounded my-3`, "submit", { borderRadius: '60px' }, "")}
                                         </form>
                                     </div>{/* /.contact-form-block */}
                                 </div>{/* /.col-lg-6 */}

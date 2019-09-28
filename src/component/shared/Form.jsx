@@ -78,12 +78,11 @@ class Form extends Component {
     //     );
     // }
 
-    renderButton(label, classType = "btn btn-primary", buttonType = "button", styleType = {}) {
+    renderButton(label, classType = "btn btn-primary", buttonType = "button", styleType = {}, modalClose ) {
         return (
-            <button disabled={this.validate()} type={buttonType}
-                // className="btn btn-primary"
-                className={classType} style={styleType}
-            >
+            <button disabled={this.validate()} type={buttonType} data-dismiss={modalClose}
+                // className="btn btn-primary" 
+                className={classType} style={styleType}>
                 {label}</button>
         );
     }
@@ -137,12 +136,13 @@ class Form extends Component {
 
     // <textarea placeholder="Your Message" name="message"></textarea>
 
-    renderTextarea(name, label, placeholder, row = 4) {
+    renderTextarea(name, label, placeholder, row = 4, classType = '', addElement = '') {
         const { data, errors } = this.state;
         return (
             <div className="form-group">
                 <label htmlFor={name}>{label}</label>
-                <textarea placeholder={placeholder} name={name} value={data[name]}
+                {addElement}
+                <textarea className={classType} placeholder={placeholder} name={name} value={data[name]}
                     onChange={this.handleChange} row={row} />
 
                 {/* {errors[name] && <div className="alert alert-danger">{errors[name]}</div>} */}

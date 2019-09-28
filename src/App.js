@@ -10,11 +10,8 @@ import './App.css';
 import FieldCarousel from './component/test/FieldCarousel';
 
 import 'react-toastify/dist/ReactToastify.css';
+import AboutUs from './component/about-us/AboutUs';
 const Home = lazy(() => import("./component/home/Home"));
-
-
-
-
 
 class App extends Component {
   constructor(props) {
@@ -33,21 +30,14 @@ class App extends Component {
         <ToastContainer />
         <Header />
         <Switch>
-
-          {/* <Route path="/not-found" component={NotFound} /> */}
-          {/* <Route path="/cart" render={(props) => <FlightSearch user={this.state.resultName} {...props} />} /> */}
-          {/* <Route path="/test" component={SimpleSlider} /> */}
-          {/* <Route path="/test" component={SimpleSlider} /> */}
-          {/* <Route path="/" component={Home} /> */}
+          <Route path="/about_us" component={AboutUs} />
           <Route path="/contact" component={Contact} />
           <Route path="/" render={() => <Suspense fallback={
             <div><img src="/cameron_assets/images/resources/preloader.GIF" alt="loader visual" /></div>}> <Home />
           </Suspense>} />
           {/* <Redirect to="/not-found" /> */}
         </Switch>
-        {/* <ResultContext.Provider value={{ val: this.state.resultName, onUserInput: this.onUserInput }} >
-           */}
-        {/* <Navbar /> */}
+
 
         {/* </ResultContext.Provider> */}
         <Suspense fallback={<div><img src="/cameron_assets/images/resources/preloader.GIF" alt="loader visual" /></div>}>
