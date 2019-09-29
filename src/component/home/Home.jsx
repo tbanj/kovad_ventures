@@ -52,12 +52,10 @@ class Home extends Form {
 
     componentDidMount() {
         let serverData = data;
-        // console.log("dele: ", er.cards);
         this.setState({
             parentContent: serverData.parentContent, testimonial_data: serverData.testimonial_data,
             listService: serverData.listService, cards: serverData.cards
         });
-
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -106,13 +104,7 @@ class Home extends Form {
                 "last_name": data.lastname, "message": data.message,
                 "phone_number": data.phoneNumber.toString()
             }
-
-
             this.quoteToServer(toSend);
-            // delete toSend.message;
-            // delete toSend.phone_number;
-            // delete toSend.message;
-
         }
         catch (error) {
             console.log(error);
