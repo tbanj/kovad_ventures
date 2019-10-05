@@ -2,14 +2,15 @@ import React, { lazy, Suspense } from 'react';
 import Joi from 'joi-browser';
 import { toast } from 'react-toastify';
 import data from '../../data/home.js';
+import path from '../../service/routeService.js';
 import { sendQuote, addVisitor } from "../../service/dataService.js";
+import Header from '../template/Header.jsx';
 import Form from "../shared/Form.jsx";
-
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
 import './home.css';
+
 const ParentCarousel = lazy(() => import('../test/Carousel'));
 const ServicesCarousel = lazy(() => import('../test/ServicesCarousel'));
 const TestimonialCarousel = lazy(() => import('../test/TestimonialCarousel'));
@@ -50,16 +51,16 @@ class Home extends Form {
         this.setState(prevState => { return { offerSupportMore: !prevState.offerSupportMore } });
     }
 
+    storePath(data) {
+        path.storePath(data)
+    }
+
     componentDidMount() {
         let serverData = data;
         this.setState({
             parentContent: serverData.parentContent, testimonial_data: serverData.testimonial_data,
             listService: serverData.listService, cards: serverData.cards
         });
-    }
-
-    componentDidUpdate(prevProps, prevState) {
-
     }
 
     handleRequest = () => {
@@ -74,7 +75,6 @@ class Home extends Form {
         }, (error) => {
             if (error.response && error.response.status === 422) {
                 this.setState({ errorData: 'no data found currently, try again later', serverData: [], isFetching: false });
-                // console.log(error.response.data.errors[0])
                 toast.error("Unable to send message");
             }
         });
@@ -117,6 +117,7 @@ class Home extends Form {
             offerSupportMore, offerInformationMore, offerBusinessMore, modalClose } = this.state;
         return (
             <React.Fragment>
+                <Header currentPath={this.props.history.location.pathname} />
                 <div className="page-wrapper">
                     {/* top carousel start */}
                     <div className=''>
@@ -263,7 +264,7 @@ class Home extends Form {
                                             corner of this page or make use of number Below<br />
                                             <a className="boldContact" href="https://wa.me/2347034849938"><i style={{ fontSize: '1.8em' }} className="fa fa-whatsapp " ></i> (+234) 703 484 9938</a><br />
                                             <a className="boldContact" href="tel:234-705-069-8626"><i style={{ fontSize: '1.8em' }} className="fa fa-phone " ></i> (+234) 705 069 8626</a><br />
-                                            <a className="boldContact" href="mailto:info@kovadltd.com"><i style={{ fontSize: '1.8em' }} className="fa fa-envelope " ></i> info@kovadltd.com</a><br />
+                                            <a className="boldContact" href="mailto:info@kovad.net"><i style={{ fontSize: '1.8em' }} className="fa fa-envelope " ></i> info@kovad.net</a><br />
                                             <a className="boldContact" href="mailto:kovad.venture@gmail.com"><i style={{ fontSize: '1.8em' }} className="fa fa-envelope " ></i> kovad.venture@gmail.com</a>
 
                                         </p>

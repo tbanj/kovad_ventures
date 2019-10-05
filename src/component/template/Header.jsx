@@ -11,8 +11,6 @@ class Header extends Component {
             serviceMobileNav: false, shopProductMobileStyle: 'none', shopProductNav: false,
         }
         this.handleMobileNav = this.handleMobileNav.bind(this);
-        this.handleShopMobileStyle = this.handleShopMobileStyle.bind(this);
-        // this.handleServiceMobileStyle = this.handleServiceMobileStyle.bind(this)
     }
 
     handleMobileNav() {
@@ -24,35 +22,9 @@ class Header extends Component {
         })
     }
 
-    handleShopMobileStyle() {
-        this.setState(prevState => {
-            if (this.state.ShopMobileNav) {
-                this.setState({ ShopMobileStyle: 'none' })
-            }
-            return { ShopMobileNav: !prevState.ShopMobileNav, ShopMobileStyle: 'block' }
-        })
-    }
-
-    handleServiceMobileStyle = () => {
-        this.setState(prevState => {
-            if (this.state.serviceMobileNav) {
-                this.setState({ serviceMobileStyle: 'none' })
-            }
-            return { serviceMobileNav: !prevState.serviceMobileNav, serviceMobileStyle: 'block' }
-        })
-    }
-
-    handleShopProductMobileStyle = () => {
-        this.setState(prevState => {
-            if (this.state.shopProductNav) { this.setState({ shopProductMobileStyle: 'none' }) }
-            return { shopProductNav: !prevState.shopProductNav, shopProductMobileStyle: 'block' }
-        })
-    }
-
     render() {
         const { mobileStyle, showNavMobile } = this.state;
-        const { dataId } = this.props;
-
+        const { dataId, currentPath } = this.props;
 
         return (
             <React.Fragment>
@@ -60,10 +32,10 @@ class Header extends Component {
                     <div className="top-header">
                         <div className="container">
                             <div className="left-info">
-                                <p><i className="cameron-icon-email" ></i><Link style={{ color: 'white', fontWeight: 'bold' }} to="mailto:info@kovadltd.com">info@kovadltd.com</Link></p>
+                                <p><i className="cameron-icon-email" ></i><Link style={{ color: 'white', fontWeight: 'bold' }} to="mailto:info@kovad.net">info@kovad.net</Link></p>
                             </div>{/* /.left-info */}
                             <div className="right-info">
-                                <ul className="info-block">
+                                <ul className="info-block mt-3">
                                     <li><i className="cameron-icon-support"></i><a href="https://wa.me/2347034849938">(+234) 703 484 9938</a></li>
                                     {/* <li><Link to="cart.html" className="cart-btn"><i className="cameron-icon-shopping-bag"></i><span className="count-text">(0)</span></Link></li> */}
                                 </ul>
@@ -91,20 +63,18 @@ class Header extends Component {
                             <div className={`main-navigation ${showNavMobile}`} style={{ display: `${mobileStyle}` }}>
                                 <ul className=" navigation-box">
 
-                                    <li className="current"> <NavLink to="/">Home</NavLink></li>
-                                    <li> <NavLink to={"contact"}>Contact</NavLink></li>
-                                    <li> <NavLink to={"about_us"}>About</NavLink> </li>
+                                    <li className={currentPath === '/' ? "current" : ''}> <NavLink to="/">Home</NavLink></li>
+                                    <li className={currentPath === '/contact' ? "current" : ''}> <NavLink to={"/contact"}>Contact</NavLink></li>
+                                    <li className={currentPath === '/about_us' ? "current" : ''}> <NavLink to={"/about_us"}>About</NavLink> </li>
                                     <li><div className="sticky-tel">
                                         <a href={"https://wa.me/2347034849938"}>
                                             <i className="cameron-icon-support colorBack"></i>(+234) 703 484 9938</a>
                                     </div></li>
                                 </ul>
-                            </div>{/* /.navbar-collapse */}
-
+                            </div>
                         </div>
-                        {/* /.container */}
                     </nav>
-                </header>{/* /.main-header header-style-one */}
+                </header>
 
             </React.Fragment>
         );

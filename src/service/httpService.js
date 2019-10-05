@@ -21,13 +21,13 @@ axios.interceptors.response.use(null, error => {
 });
 
 
-function setJwt(jwt) {
-    // this is use to set default headers to CRUD command to this project api request
+// function setJwt(jwt) {
+//     this is use to set default headers to CRUD command to this project api request
 
-    // this is use to set default headers to post command only to this project api request
-    // axios.defaults.headers.post
+//     this is use to set default headers to post command only to this project api request
+//     axios.defaults.headers.post
 
-}
+// }
 
 export default {
     get: axios.get,

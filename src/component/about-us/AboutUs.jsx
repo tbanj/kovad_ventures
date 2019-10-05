@@ -4,6 +4,7 @@ import TestimonialCarousel from '../test/TestimonialCarousel';
 import ServiceCarousel from '../test/ServicesCarousel';
 import data from '../../data/home.js';
 import './aboutus.css';
+import Header from '../template/Header';
 class AboutUs extends Component {
     state = {
         testimonial_data: [], listService: []
@@ -19,6 +20,7 @@ class AboutUs extends Component {
         const { testimonial_data, listService } = this.state;
         return (
             <React.Fragment>
+                <Header currentPath={this.props.history.location.pathname} />
                 <section className="page-title-block text-center">
                     <div className="container">
                         <h2>About Us</h2>
@@ -167,7 +169,7 @@ class AboutUs extends Component {
                                         <img src="/cameron_assets/images/resources/img_avatar.png" alt="Awesome Visual" />
                                     </div>{/* /.image-block */}
                                     <div className="text-block">
-                                        <h3>Toheeb Adetunde</h3>
+                                        <h3>Alabi Temitope Wahab</h3>
                                         <p>CTO</p>
                                         <div className="social-block">
                                             <a href="https://wa.me/2347034849938"><i className="fa fa-facebook-f"></i></a>

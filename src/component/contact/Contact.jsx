@@ -9,6 +9,7 @@ import Form from '../shared/Form.jsx';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import './contact.css';
+import Header from '../template/Header.jsx';
 class Contact extends Form {
     constructor(props) {
         super(props)
@@ -73,6 +74,7 @@ class Contact extends Form {
     render() {
         return (
             <React.Fragment>
+                <Header currentPath={this.props.history.location.pathname} />
                 <section className="page-title-block text-center">
                     <div className="container">
                         <h2>Contact</h2>
@@ -115,7 +117,7 @@ class Contact extends Form {
                                         <i className="cameron-icon-opened-email-outlined-interface-symbol"></i>
                                         <h3>Write Us Now</h3>
 
-                                        <a className="infoContact" href="mailto: info@kovadltd.com"><i style={{ fontSize: '1.8em' }} className="fa fa-envelope " ></i> info@kovadltd.com</a><br />
+                                        <a className="infoContact" href="mailto: info@kovad.net"><i style={{ fontSize: '1.8em' }} className="fa fa-envelope " ></i> info@kovad.net</a><br />
                                         <a className="infoContact" href="mailto: kovad.venture@gmail.com"><i style={{ fontSize: '1.8em' }} className="fa fa-envelope " ></i> kovad.venture@gmail.com</a><br />
                                     </div>{/* /.inner-block */}
                                 </div>{/* /.single-contact-info-one */}
