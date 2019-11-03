@@ -4,3 +4,13 @@ button.slick-prev:before, button.slick-next:before {
     font-size: 50px;
     color: #FFFFFF;
   }
+
+
+  #aboutRemoveBorderModal {
+    border-bottom-width: 0px;
+}
+
+.addHeight {
+  height: 150px !important;
+  padding-top: 10px;
+}

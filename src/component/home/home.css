@@ -16,6 +16,10 @@
     font-weight: bold;
 }
 
+#removeBorderModal {
+    border-bottom-width: 0px;
+}
+
 
 
 	

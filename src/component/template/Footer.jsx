@@ -1,18 +1,5 @@
 import React from 'react';
-// addVisitorContact(data) {
-//     console.log(data)
-//     addVisitor(data).then(data => {
-//         if (data) {
-//             this.setState({ modalClose: 'modal' })
-//         }
-//     }, (error) => {
-//         if (error.response && error.response.status === 422) {
-//             this.setState({ errorData: 'no data found currently, try again later', serverData: [], isFetching: false });
-//             // console.log(error.response.data.errors[0])
-//             toast.error("Unable to send message");
-//         }
-//     });
-// }
+import { Link } from 'react-router-dom';
 const Footer = () => {
     return (
         <React.Fragment>
@@ -39,11 +26,11 @@ const Footer = () => {
                                         <h3>Services</h3>
                                     </div>
                                     <ul className="links-lists">
-                                        <li><a href="#navphone">Company History</a></li>
-                                        <li><a href="#navphone">About Us </a></li>
-                                        <li><a href="#navphone">Contact Us</a></li>
-                                        <li><a href="#navphone">Services</a></li>
-                                        <li><a href="#navphone">Privacy Policy</a></li>
+                                        <li><Link to={"/"} href="#navphone">Company History</Link></li>
+                                        <li><Link to={"/about_us"} href="#navphone">About Us </Link></li>
+                                        <li><Link to={"/contact"} href="#navphone">Contact Us</Link></li>
+                                        <li><Link to={"/"} href="#navphone">Services</Link></li>
+                                        <li><Link to={"/about_us"} href="#nLink to={}vphone">Privacy Policy</Link></li>
                                     </ul>{/* /.links-lists */}
                                 </div>
                             </div>

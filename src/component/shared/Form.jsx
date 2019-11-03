@@ -78,9 +78,9 @@ class Form extends Component {
     //     );
     // }
 
-    renderButton(label, classType = "btn btn-primary", buttonType = "button", styleType = {}, modalClose ) {
+    renderButton(label, classType = "btn btn-primary", buttonType = "button", styleType = {}) {
         return (
-            <button disabled={this.validate()} type={buttonType} data-dismiss={modalClose}
+            <button disabled={this.validate()} type={buttonType} 
                 // className="btn btn-primary" 
                 className={classType} style={styleType}>
                 {label}</button>

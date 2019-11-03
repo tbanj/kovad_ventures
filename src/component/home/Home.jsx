@@ -6,6 +6,7 @@ import path from '../../service/routeService.js';
 import { sendQuote, addVisitor } from "../../service/dataService.js";
 import Header from '../template/Header.jsx';
 import Form from "../shared/Form.jsx";
+import Modal from "../shared/modal/Modal.jsx";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -22,8 +23,7 @@ class Home extends Form {
             errors: {},
             parentContent: [], testimonial_data: [], listService: [], cards: [],
             OfferSecurityMore: false, offerBusinessMore: false, offerInformationMore: false,
-            offerSupportMore: false, modalClose: '',
-
+            offerSupportMore: false, showRequestModal: false,
         };
     }
 
@@ -51,6 +51,12 @@ class Home extends Form {
         this.setState(prevState => { return { offerSupportMore: !prevState.offerSupportMore } });
     }
 
+    // method to to display and hide modal when mail has been submitted
+    displayRequestModal = () => {
+        this.setState({ showRequestModal: true, data: { firstname: '', lastname: "", email: '', message: '', phoneNumber: '' } });
+    };
+    hideRequestModal = () => { this.setState({ showRequestModal: false }); };
+
     storePath(data) {
         path.storePath(data)
     }
@@ -63,20 +69,22 @@ class Home extends Form {
         });
     }
 
-    handleRequest = () => {
-        this.setState({ modalClose: '', data: { firstname: '', lastname: "", email: '', message: '', phoneNumber: '' } });
-    }
-
     addVisitorContact(data) {
         addVisitor(data).then(data => {
             if (data) {
-                this.setState({ modalClose: 'modal' })
+                this.setState({ showRequestModal: false });
+
             }
         }, (error) => {
             if (error.response && error.response.status === 422) {
                 this.setState({ errorData: 'no data found currently, try again later', serverData: [], isFetching: false });
                 toast.error("Unable to send message");
             }
+            if (error.response && error.response.status === 400) {
+                this.setState({ showRequestModal: false });
+                toast(`We will get back to you shortly ${this.state.data.firstname}`);
+            }
+
         });
     }
 
@@ -104,6 +112,7 @@ class Home extends Form {
                 "last_name": data.lastname, "message": data.message,
                 "phone_number": data.phoneNumber.toString()
             }
+            toast(`please wait for mail to send!!!`);
             this.quoteToServer(toSend);
         }
         catch (error) {
@@ -114,7 +123,7 @@ class Home extends Form {
 
     render() {
         const { testimonial_data, parentContent, offerSecurityMore, listService,
-            offerSupportMore, offerInformationMore, offerBusinessMore, modalClose } = this.state;
+            offerSupportMore, offerInformationMore, offerBusinessMore } = this.state;
         return (
             <React.Fragment>
                 <Header currentPath={this.props.history.location.pathname} />
@@ -175,16 +184,16 @@ class Home extends Form {
                                         <h3><a href="#navphone">Business <br /> Security</a></h3>
                                         {offerBusinessMore ? "" : <p >It helps to identifies and effectively mitigates or manages, at an early stage,
                                              any developments that may threaten the resilience and continued
-                                             survival of a corporation. An effective corporate or enterprise security relays heavily
+                                             survival of a corporation. An effective corporate or enterprise security relys heavily
                                              on state of the art technology gadgets. Below is a detailed reasons why a firm need to install
                                              security systems.</p>}
                                         {offerBusinessMore ? <p className="moreTextScroll">
                                             <strong>10 Reasons Why your Business Need Security Systems</strong><br /><br />
-                                            <strong>1. Security systems help protect your business from robbery or theft</strong>
+                                            <strong>1. Security systems help protect your business from robbery or theft.</strong>
 
                                             The first reason why your business needs security systems is to keep the burglars at bay. If intruders can see that your establishment has security cameras and alarms, knowing that their faces will be captured on video; they will be discouraged from stealing your goods or equipments.
                                             <br />
-                                            <strong>2. It will increase employees’ overall productivity</strong><br />
+                                            <strong>2. It will increase employees overall productivity</strong><br />
 
                                             Installed cameras make the employees aware that they are being watched by their boss. This will prevent them from slacking or sleeping while on duty. They know that video recordings can be played back to show what happened when you the employer is not around.
 
@@ -202,7 +211,7 @@ class Home extends Form {
 
                                             Security systems give the employees, investors, and customers alike the impression that you are a responsible businessman. It also helps you build you a good image. These individuals will see how serious and responsible you are as an owner and employer. That you want to prevent losses in your merchandise and keep thieves from harming your customers and employees.
                                             <br />
-                                            <strong>6. Close Circuit TVs and alarms provide added security to your business premises</strong>
+                                            <strong>6. Close Circuit TVs and alarms provide added security to your business premises.</strong>
 
                                             Even if you hire a security guard, security cameras help keep track of people constantly walking in and out of your premises. This is important in busy establishments, retail shops or warehouses or because guards alone cannot monitor everything. This is also important for businesses that deal with sensitive information or businesses that needs to protect their intellectual properties.
                                             <br />
@@ -210,9 +219,9 @@ class Home extends Form {
 
                                             One of the reasons why your business needs security systems is that cameras enable you to document the activities and actual events in your establishment. You can also capture the face of a shop lifter.
                                             <br />
-                                            <strong>8. It can greatly help police authorities to catch culprits</strong>
+                                            <strong>8. It can greatly help police authorities to catch culprits.</strong>
 
-                                            Even if armed robbers successfully steal from you, it will not take long before the authorities catch them. CC TVs make them easily identifiable or give them a lead on who the suspects are. This is why your business need security systems because it helps in the immediate prosecution of offenders.
+                                            Even if armed robbers successfully steal from you, it will not take long before the authorities catch them. CCTVs make them easily identifiable or give them a lead on who the suspects are. This is why your business need security systems because it helps in the immediate prosecution of offenders.
                                             <br />
                                             <strong>9. It will protect your establishment from unauthorized entry</strong><br />
 
@@ -242,13 +251,13 @@ class Home extends Form {
                                             </p>
                                         }
                                         {offerInformationMore ? <p className="moreTextScroll">
-                                            We have security experts who can help you to test your organization architecture to ascertain
-                                            i. Whether you are already been hacked.<br />
-                                            ii. Your system is vulnerable to be attack soon.<br />
+                                            We have security experts who can help you to test your organization architecture to ascertain<br />
+                                            i.   Whether you are already been hacked.<br />
+                                            ii.  Your system is vulnerable to be attack soon.<br />
                                             Best practices when it comes to protecting critical infrastructure from cyber attacks-: <br />
-                                            a. Long term approach which entails embarking on asolid cyber-security plan that is implemented as a continuous
-                                         process and relies on fact-based verifications  and provide the resources to make it happen.<br />
-                                            b. Short tem approach:  Is by focusing on remote access, walk-in laptops, USB sticks and the communication of files (anything from technical documents to executables) via email. Surprisingly, many asset owners don’t maintain a full
+                                            a. Long term approach which entails embarking on a solid cyber-security plan that is implemented as a continuous
+                                             process and relies on fact-based verifications and provide the resources to make it happen.<br />
+                                            b. Short term approach:  Is by focusing on remote access, walk-in laptops, USB sticks and the communication of files (anything from technical documents to executables) via email. Surprisingly, many asset owners don’t maintain a full
                                              and accurate list of contractors along with their roles and responsibilities. Others don’t control remote access tightly.
                                           </p> : ""}
                                         <a href="#navphone" onClick={this.handleInformationMore} className="more-link">{offerInformationMore ? 'Minimize' : 'Read More'}</a>
@@ -260,8 +269,8 @@ class Home extends Form {
                                             <i className="cameron-icon-support"></i>
                                         </div>{/* /.icon-block */}
                                         <h3><a href="#navphone">Useful <br /> Support</a></h3>
-                                        {offerSupportMore ? "" : <p>Get in touch with our support personnels through online chat box at the left
-                                            corner of this page or make use of number Below<br />
+                                        {offerSupportMore ? "" : <p>Get in touch with our support personnels through online chat box at the right
+                                            corner of this page or make use of one of the numbers Below<br /><br />
                                             <a className="boldContact" href="https://wa.me/2347034849938"><i style={{ fontSize: '1.8em' }} className="fa fa-whatsapp " ></i> (+234) 703 484 9938</a><br />
                                             <a className="boldContact" href="tel:234-705-069-8626"><i style={{ fontSize: '1.8em' }} className="fa fa-phone " ></i> (+234) 705 069 8626</a><br />
                                             <a className="boldContact" href="mailto:info@kovad.net"><i style={{ fontSize: '1.8em' }} className="fa fa-envelope " ></i> info@kovad.net</a><br />
@@ -291,40 +300,41 @@ class Home extends Form {
                                             Also render maintenance services of security and safety devices.
                                         </p>
 
-                                        <a href="#navphone" onClick={this.handleRequest} data-toggle="modal" data-target="#requestModal" className="more-btn">Request a Free Quote Now</a>
+                                        <a href="#homeRequest" onClick={this.displayRequestModal} className="more-btn">Request a Free Quote Now</a>
 
 
                                         {/* modal request start */}
-                                        <div className="modal fade" id="requestModal" tabIndex="-1" role="dialog" aria-labelledby="requestModalTitle" aria-hidden="true">
-                                            <div className="modal-dialog" role="document">
-                                                <div className="modal-content">
-                                                    <div className="modal-header">
-                                                        <h5 className="modal-title col-md-6 offset-md-3" id="exampleModalLongTitle">Request a Quote
-                                                    </h5>
+                                        <Modal showRequestModal={this.state.showRequestModal} handleClose={this.hideRequestModal}>
+                                            <div id="homeRequest" className="modal-content">
+                                                <div id="removeBorderModal" className="modal-header ">
+                                                    <div className="clearfix">
+                                                        <span className="float-right">
+                                                            <button type="button" className="close " data-dismiss="modal">
+                                                                <span style={{ fontSize: '35px' }} onClick={this.hideRequestModal}>×</span>
+                                                            </button>
+                                                        </span>
                                                     </div>
-                                                    <div className="modal-body">
-                                                        <form onSubmit={this.handleSubmit} className="contact-form-one ">
-                                                            <div className="row">
-                                                                <div className="col-md-6">
-                                                                    {this.renderInput('firstname', 'Fist Name', 'text', true)}
-                                                                </div>
-                                                                <div className="col-md-6">
-                                                                    {this.renderInput('lastname', 'Last Name', 'text')}
-                                                                </div>
+                                                    <h3 className="modal-title col-md-8 offset-md-2" id="exampleModalLongTitle">Request a Quote</h3>
+                                                </div>
+                                                <div className="modal-body">
+                                                    <form onSubmit={this.handleSubmit} className="contact-form-one ">
+                                                        <div className="row">
+                                                            <div className="col-md-6">
+                                                                {this.renderInput('firstname', 'First Name', 'text', true)}
                                                             </div>
-                                                            {this.renderInput('email', 'Contact Email', 'email')}
-                                                            {this.renderInput('phoneNumber', 'Phone Number', 'number')}
-                                                            {this.renderTextarea('message', 'Brief explain of what you want', ' Kindly pour out your thoughts', 6, "w-100 addHeight", "")}
-                                                            {this.renderButton('Submit Now', `btn btn-block btn-lg btn-primary col-md-6 offset-md-3 my-3`, "submit", { borderRadius: '60px' }, modalClose)}
+                                                            <div className="col-md-6">
+                                                                {this.renderInput('lastname', 'Last Name', 'text')}
+                                                            </div>
+                                                        </div>
+                                                        {this.renderInput('email', 'Contact Email', 'email')}
+                                                        {this.renderInput('phoneNumber', 'Phone Number', 'number')}
+                                                        {this.renderTextarea('message', 'Brief explain of what you want', ' Kindly pour out your thoughts', 6, "w-100 addHeight", "")}
+                                                        {this.renderButton('Send Now', `btn btn-block btn-lg btn-primary col-md-6 offset-md-3 my-3`, "submit", { borderRadius: '60px' })}
 
-                                                        </form>
-                                                    </div>
-                                                    <div className="modal-footer">
-                                                        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                    </div>
+                                                    </form>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </Modal>
 
                                         {/* modal request end */}
 
@@ -375,40 +385,8 @@ class Home extends Form {
                                 <h2>Looking for Certified Security Expert</h2>
                             </div>{/* /.title-block */}
 
-                            <a href="#navphone" onClick={this.handleRequest} data-toggle="modal" data-target="#requestModa" className="cta-btn">Request a Free Quote Now</a>
+                            <a href="#navphone" onClick={this.displayRequestModal} className="cta-btn">Request a Free Quote Now</a>
 
-
-                            {/* modal request start */}
-                            <div className="modal fade" id="requestModa" tabIndex="-1" role="dialog" aria-labelledby="requestModalTitle" aria-hidden="true">
-                                <div className="modal-dialog" role="document">
-                                    <div className="modal-content">
-                                        <div className="modal-header">
-                                            <h5 className="modal-title col-md-6 offset-md-3" id="exampleModalLongTitle">Request a Quote
-                                                    </h5>
-                                        </div>
-                                        <div className="modal-body">
-                                            <form onSubmit={this.handleSubmit} className="contact-form-one ">
-                                                <div className="row">
-                                                    <div className="col-md-6">
-                                                        {this.renderInput('firstname', 'Fist Name', 'text', true)}
-                                                    </div>
-                                                    <div className="col-md-6">
-                                                        {this.renderInput('lastname', 'Last Name', 'text')}
-                                                    </div>
-                                                </div>
-                                                {this.renderInput('email', 'Contact Email', 'email')}
-                                                {this.renderInput('phoneNumber', 'Phone Number', 'number')}
-                                                {this.renderTextarea('message', 'Brief explain of what you want', ' Kindly pour out your thoughts', 6, "w-100 addHeight", "")}
-                                                {this.renderButton('Submit Now', `btn btn-block btn-lg btn-primary col-md-6 offset-md-3 my-3`, "submit", { borderRadius: '60px' }, modalClose)}
-
-                                            </form>
-                                        </div>
-                                        <div className="modal-footer">
-                                            <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>{/* /.container */}
                     </section>{/* /.cta-style-one */}
                     <section className="service-style-one">
@@ -423,11 +401,10 @@ class Home extends Form {
                             <div className="container-fluid">
                                 {/* <ServicesCarousel data={listService} /> */}
                                 <Suspense fallback={<div><img src="/cameron_assets/images/resources/preloader.GIF" alt="loader visual" /></div>}>
-                                    <ServicesCarousel data={listService} />
+                                    <ServicesCarousel data={listService} showRequestModal={this.displayRequestModal} />
                                 </Suspense>
                             </div>
                             {/* insert carousel for servicees end */}
-
 
                         </div>
                     </section>

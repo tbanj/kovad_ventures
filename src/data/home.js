@@ -12,14 +12,14 @@ let listService = [{
     "subtitle": "Expel intruders from your home while you are home or not with our new arrivals of wire fencing."
 },
 {
-    "image": "/cameron_assets/images/resources/burglar_alarm2.png",
+    "image": "https://res.cloudinary.com/dr9bbyvab/kovad/burglar_alarm2.png",
     "title": "Onsite & Remote Smart CCTV Monitoring",
     "subtitle": `Enjoy Remote monitoring of your home at just a fraction cost of
             the onsite monitoring. Is a huge advancement on the standard CCTV systems,
      offering round-the-clock reliability and protection.`
 },
 {
-    "image": "/cameron_assets/images/resources/burglar_alarm3.png",
+    "image": "https://res.cloudinary.com/dr9bbyvab/kovad/burglar_alarm3.png",
     "title": "Burglar Alarm",
     "subtitle": `Is a system designed to detect intrusion – unauthorized entry – into a building or apartment.
      Security alarms are used in residential, commercial, industrial, and military properties

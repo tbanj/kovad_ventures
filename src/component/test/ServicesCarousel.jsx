@@ -12,9 +12,10 @@ class ServiceCarousel extends Component {
     state = {}
 
     render() {
-        var data = this.props.data;
-        var newsTemplate;
-        var settings = {
+        const { showRequestModal } = this.props;
+        let data = this.props.data;
+        let newsTemplate;
+        let settings = {
             lazyload: true,
             autoplay: true,
             dots: true,
@@ -59,7 +60,7 @@ class ServiceCarousel extends Component {
                                     <h3><a href="services.html">{item.title}</a></h3>
                                     <p>{item.subtitle}</p>
 
-                                    <a id="request" href="request" className="more-btn">Request a Free Quote Now</a>
+                                    <a id="request" onClick={showRequestModal} className="more-btn">Request a Free Quote Now</a>
                                 </div>
                             </div>
                         </div></div>

@@ -14,9 +14,7 @@ class Contact extends Form {
     constructor(props) {
         super(props)
         this.state = {
-            data: { firstname: '', lastname: "", email: '', message: '' },
-            errors: {}
-
+            data: { firstname: '', lastname: "", email: '', message: '' }, errors: {}
         };
 
         this._isMounted = false;
@@ -39,6 +37,11 @@ class Contact extends Form {
             if (error.response && error.response.status === 422) {
                 this.setState({ errorData: 'no data found currently, try again later', serverData: [], isFetching: false });
                 toast.error("Unable to send message");
+            }
+            if (error.response && error.response.status === 400) {
+                toast(`We will get in touch shortly ${this.state.data.firstname}`);
+                this.setState({ data: { firstname: '', lastname: "", email: '', message: '' } });
+
             }
         });
     }
@@ -142,7 +145,7 @@ class Contact extends Form {
                                         <form onSubmit={this.handleSubmit} className="contact-form-one ">
                                             <div className="row">
                                                 <div className="col-md-6">
-                                                    {this.renderInput('firstname', 'Fist Name', 'text', true)}
+                                                    {this.renderInput('firstname', 'First Name', 'text', true)}
                                                 </div>
                                                 <div className="col-md-6">
                                                     {this.renderInput('lastname', 'Last Name', 'text')}

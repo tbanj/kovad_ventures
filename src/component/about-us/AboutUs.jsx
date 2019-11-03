@@ -1,21 +1,95 @@
-import React, { Component, Suspense } from 'react'
+import React, { Suspense } from 'react'
 import { Link } from "react-router-dom";
+import Joi from 'joi-browser';
+import { toast } from 'react-toastify';
+import data from '../../data/home.js';
+import { sendQuote, addVisitor } from "../../service/dataService";
+import Header from '../template/Header';
 import TestimonialCarousel from '../test/TestimonialCarousel';
 import ServiceCarousel from '../test/ServicesCarousel';
-import data from '../../data/home.js';
+import Form from '../shared/Form';
+import Modal from "../shared/modal/Modal.jsx";
 import './aboutus.css';
-import Header from '../template/Header';
-class AboutUs extends Component {
-    state = {
-        testimonial_data: [], listService: []
+class AboutUs extends Form {
+    constructor(props) {
+        super(props);
+        this.state = {
+            testimonial_data: [], listService: [], errors: {},
+            data: { firstname: '', lastname: "", email: '', message: '', phoneNumber: '' },
+        }
     }
+
+    schema = {
+        email: Joi.string().email().required().label("Email"),
+        firstname: Joi.string().required().min(3).max(20).label("First Name"),
+        lastname: Joi.string().required().min(3).max(20),
+        message: Joi.string().min(10).required(),
+        phoneNumber: Joi.number().min(1000000000).max(99999999999999).required().label("Phone"),
+    };
+
+    // method to to display and hide modal when mail has been submitted
+    displayRequestModal = () => {
+        this.setState({ showRequestModal: true, data: { firstname: '', lastname: "", email: '', message: '', phoneNumber: '' } });
+    };
+    hideRequestModal = () => { this.setState({ showRequestModal: false }); };
 
     componentDidMount() {
         this.setState({
-            testimonial_data: data.testimonial_data, listService: data.listService
-        })
-
+            testimonial_data: data.testimonial_data, listService: data.listService, showRequestModal: false,
+        });
     }
+
+    addVisitorContact(data) {
+        addVisitor(data).then(data => {
+            if (data) {
+                this.setState({ showRequestModal: false });
+
+            }
+        }, (error) => {
+            if (error.response && error.response.status === 422) {
+                this.setState({ errorData: 'no data found currently, try again later', serverData: [], isFetching: false });
+                toast.error("Unable to send message");
+            }
+            if (error.response && error.response.status === 400) {
+                this.setState({ showRequestModal: false });
+                toast(`We will get back to you shortly ${this.state.data.firstname}`);
+            }
+
+        });
+    }
+
+    quoteToServer(data) {
+        let reviewData = data;
+        sendQuote(data).then(data => {
+            if (data) {
+                toast.success(data.data.message);
+                delete reviewData.message;
+                this.addVisitorContact(reviewData);
+            }
+        }, (error) => {
+            if (error.response && error.response.status === 422) {
+                this.setState({ errorData: 'no data found currently, try again later', serverData: [], isFetching: false });
+                toast.error(error.response.data.errors[0]);
+            }
+        })
+    }
+
+    doSubmit = () => {
+        try {
+            const { data } = this.state;
+            let toSend = {
+                "email": data.email.trim(), "first_name": data.firstname,
+                "last_name": data.lastname, "message": data.message,
+                "phone_number": data.phoneNumber.toString()
+            }
+            toast(`please wait for mail to send!!!`);
+            this.quoteToServer(toSend);
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+
     render() {
         const { testimonial_data, listService } = this.state;
         return (
@@ -52,7 +126,7 @@ class AboutUs extends Component {
                                             electronics safety devices for Homes, Corporate Organization, Estate, Shopping Malls, Hospitals, Hotels etc.
                                             Also render maintenance services of security and safety devices.
                                         </p>
-                                    <a href="#navphone" className="more-btn">Request a Free Quote Now</a>
+                                    <a href="#aboutRequest" onClick={this.displayRequestModal} className="more-btn">Request a Free Quote Now</a>
                                 </div>{/* /.content-block */}
                             </div>{/* /.col-lg-6 */}
                         </div>
@@ -92,8 +166,44 @@ class AboutUs extends Component {
                             <h2>Looking for Certified Trainer</h2>
                         </div>
                         <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt <br /> mollit anim id est laborum.</p>
-                        <a href="contact.html" className="cta-btn">Get Appointment</a>
+                        <a href="#aboutRequest" onClick={this.displayRequestModal} className="cta-btn">Get Appointment</a>
+
+                        {/* modal request start */}
+                        <Modal showRequestModal={this.state.showRequestModal} handleClose={this.hideRequestModal}>
+                            <div id="aboutRequest" className="modal-content">
+                                <div id="aboutRemoveBorderModal" className="modal-header ">
+                                    <h3 className="modal-title col-md-8 offset-md-2" >Request a Quote</h3>
+                                    <div className="clearfix">
+                                        <span className="float-right">
+                                            <button type="button" className="close " data-dismiss="modal">
+                                                <span style={{ fontSize: '35px' }} onClick={this.hideRequestModal}>×</span>
+                                            </button>
+                                        </span>
+                                    </div>
+
+                                </div>
+                                <div className="modal-body">
+                                    <form onSubmit={this.handleSubmit} className="contact-form-one ">
+                                        <div className="row">
+                                            <div className="col-md-6">
+                                                {this.renderInput('firstname', 'First Name', 'text', true)}
+                                            </div>
+                                            <div className="col-md-6">
+                                                {this.renderInput('lastname', 'Last Name', 'text')}
+                                            </div>
+                                        </div>
+                                        {this.renderInput('email', 'Contact Email', 'email')}
+                                        {this.renderInput('phoneNumber', 'Phone Number', 'number')}
+                                        {this.renderTextarea('message', 'Brief explain of what you want', ' Kindly pour out your thoughts', 6, "w-100 addHeight", "")}
+                                        {this.renderButton('Send Now', `btn btn-block btn-lg btn-primary col-md-6 offset-md-3 my-3`, "submit", { borderRadius: '60px' })}
+
+                                    </form>
+                                </div>
+                            </div>
+                        </Modal>
+                        {/* modal request end */}
                     </div>
+
                 </section>{/* /.cta-style-one */}
                 <section className="service-style-one home-page-two">
                     <div className="container">
@@ -106,7 +216,7 @@ class AboutUs extends Component {
                         <div className="container-fluid">
                             {/* <ServicesCarousel data={listService} /> */}
                             <Suspense fallback={<div><img src="/cameron_assets/images/resources/preloader.GIF" alt="loader visual" /></div>}>
-                                <ServiceCarousel data={listService} />
+                                <ServiceCarousel data={listService} showRequestModal={this.displayRequestModal} />
                             </Suspense>
                         </div>
 
@@ -120,7 +230,7 @@ class AboutUs extends Component {
                         </div>
 
                         <Suspense fallback={<div><img src="/cameron_assets/images/resources/preloader.GIF" alt="loader visual" /></div>}>
-                            <TestimonialCarousel cards={testimonial_data} />
+                            <TestimonialCarousel cards={testimonial_data} showRequestModal={this.displayRequestModal} />
                         </Suspense>
                     </div>
                 </section>{/* /.testimonials-style-one */}
