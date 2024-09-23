@@ -1,9 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Joi from "joi-browser";
-import { toast } from "react-toastify";
-
-import { sendMessage, addVisitorData } from "../../service/dataService.js";
 import Form from "../shared/Form.jsx";
 
 import "slick-carousel/slick/slick.css";
@@ -48,26 +45,13 @@ class Contact extends Form {
 
   doSubmit = async () => {
     try {
-      const { data } = this.state;
+      /* const { data } = this.state;
       const toSend = {
         email: data.email.trim(),
         first_name: data.firstname,
         last_name: data.lastname,
         message: data.message,
-      };
-      let dataSend = toSend;
-      /* sendMessage(toSend).then(data => {
-                if (data) {
-                    delete dataSend.message;
-                    this.addVisitorContact(dataSend);
-                }
-            }, (error) => {
-                if (error.response && error.response.status === 422) {
-                    this.setState({ errorData: 'no data found currently, try again later', serverData: [], isFetching: false });
-                    toast.error("Unable to send message");
-                }
-            }); */
-      // delete toSend.message;
+      }; */
     } catch (error) {
       console.log(error);
     }
