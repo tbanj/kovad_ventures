@@ -80,7 +80,7 @@ class Header extends Component {
                 <Link
                   className="navbar-brand"
                   style={{ backgroundColor: "#ffffff" }}
-                  to="index-2.html"
+                  to="/"
                 >
                   <img
                     src="/cameron_assets/images/resources/d6.png"
